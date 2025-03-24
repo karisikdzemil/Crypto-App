@@ -1,24 +1,43 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import HomePage from "./HomePage";
 
+const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
 export default function Home() {
-  const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
+    const [homeData, setHomeData] = useState([]);
 
-  useEffect(() => {
-    fetch(`/api/v1/cryptocurrency/listings/latest`, {
-        method: "GET",
+//   useEffect(() => {
+//     fetch(`/api/v1/cryptocurrency/listings/latest`, {
+//         method: "GET",
+//         headers: {
+//             'X-CMC_PRO_API_KEY': coinCapKey
+//         },
+//       })
+//       .then(response => response.json())
+//       .then(data => {
+//         setHomeData(data);
+//         console.log(data)
+//         } )
+//       .catch(error => console.error('Error:', error));
+    
+//   }, []);
+
+useCallback(() => {
+    useEffect(() => {
+    fetch('/api/v1/cryptocurrency/listings/latest', {
+        method: 'GET',
         headers: {
             'X-CMC_PRO_API_KEY': coinCapKey
-        },
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-      
-      
-      
-  }, []);
+        }
+    }).then(response => response.json())
+    .then(data => {
+        setHomeData(data);
+        console.log(homeData);
+        })
+}, [])
+}, [homeData]);
+
   return (
-    <section className="w-full h-[90vh] bg-slate-500">
+    <section className="w-full h-[90vh] bg-slate-500 flex items-center gap-5">
       <div className=" w-6/12 h-4/5 flex flex-col items-center text-center justify-center gap-5">
         <h1 className="text-4xl font-extrabold text-white">
           Welcome to <span className="text-amber-500">Crypto</span>, a site for
@@ -29,6 +48,7 @@ export default function Home() {
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
       </div>
+      <HomePage title="Best cryptocurency" data={homeData}/>
     </section>
   );
 }
