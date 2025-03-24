@@ -1,6 +1,6 @@
 export default function Header () {
     return(
-        <header className="w-full h-[10vh] bg-slate-600 p-1.5 px-5 flex gap-80">
+        <header className="w-full h-[10vh] bg-slate-700 p-1.5 px-5 flex gap-80">
             <div className="flex justify-center items-center gap-5">
                 <img className="w-15 h-15 rounded-md" src="icons8-crypto-64.png" alt="" />
             <h1 className="text-white font-bold text-3xl">Crypto App</h1>
