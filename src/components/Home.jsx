@@ -16,7 +16,6 @@ useEffect(() => {
     .then(response => response.json())
     .then(data => {
         setHomeData(data);
-        console.log(data); // Prikazuje nove podatke
     })
     .catch(error => console.error("Greška prilikom fetchovanja:", error));
 }, []);
@@ -31,7 +30,7 @@ console.log(homeData)
           tracking and buying cryptocurrencies!
         </h1>
         <button className="bg-amber-500 w-40 h-12 text-white rounded-md text-xl font-bold cursor-pointer">
-          Watch Now
+          Buy Now
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
       </div>
