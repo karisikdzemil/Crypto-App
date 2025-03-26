@@ -38,11 +38,11 @@ useEffect(() => {
       </div>
       <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
         <h1 className="text-white text-xl w-70 h-5 mb-2">Most popular cryptocurency</h1>
-      <ListItem title="Best cryptocurency" data={homeData.data[0]} />
-      <ListItem title="Best cryptocurency" data={homeData.data[1]} />
-      <ListItem title="Best cryptocurency" data={homeData.data[2]}/>
-      <ListItem title="Best cryptocurency" data={homeData.data[3]}/>
-      <ListItem title="Best cryptocurency" data={homeData.data[4]}/>
+      <ListItem  data={homeData.data[0]} />
+      <ListItem data={homeData.data[1]} />
+      <ListItem data={homeData.data[2]}/>
+      <ListItem data={homeData.data[3]}/>
+      <ListItem data={homeData.data[4]}/>
 
       </div>
     </section>

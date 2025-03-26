@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
+import PartOfList from "./PartOfList";
 const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
 export default function List() {
     const [listData, setListData] = useState(null);
@@ -24,6 +25,22 @@ export default function List() {
     return <p>Loading... </p>
   }
 
+  const topGainers = listData.data
+  .sort((a, b) => b.quote.USD.percent_change_24h - a.quote.USD.percent_change_24h)
+  .slice(0, 5);
+
+  const topLosers = listData.data
+  .sort((a, b) => a.quote.USD.percent_change_24h - b.quote.USD.percent_change_24h)
+  .slice(0, 5);
+
+  const topMarketCap = listData.data
+  .sort((a, b) => b.quote.USD.market_cap - a.quote.USD.market_cap)
+  .slice(0, 5);
+
+  const topVolume = listData.data
+  .sort((a, b) => b.quote.USD.volume_24h - a.quote.USD.volume_24h)
+  .slice(0, 5);
+
 
 
   return (
@@ -34,34 +51,10 @@ export default function List() {
         <span className="text-amber-500">criptocurency</span>
       </h1>
     <div className="w-[100%] h-[100vh] bg-red-300 flex flex-wrap gap-10 items-center justify-center">
-    <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-
-      </div>
-      <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-
-      </div>
-      <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-
-      </div>
-      <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-
-      </div>
+        <PartOfList title="Top 5 gainers!" data={topGainers}/>
+        <PartOfList title="Top 5 losers!" data={topLosers}/>
+        <PartOfList title="Top 5 market cap!" data={topMarketCap}/>
+        <PartOfList title="Top 5 volume!" data={topVolume}/>
     </div>
       <ul className="w-10/12 min-h-[10vh] bg-black opacity-50 p-10 flex flex-col items-center gap-5">
             {listData.data.map((listItem) => (
