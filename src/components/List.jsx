@@ -45,20 +45,19 @@ export default function List() {
 
   return (
     <section className="w-full min-h-[90vh] bg-slate-900 flex flex-col items-center gap-10 p-10">
-      <h1 className="text-3xl mt-5 font-bold text-white w-80 text-center">
+      <h1 className="text-3xl mt-5 text-white w-80 text-center">
         {" "}
-        <span className="text-amber-500">List</span> of more than 100{" "}
-        <span className="text-amber-500">criptocurency</span>
+        <span className="text-amber-500">MARKET</span> OVERVIEW{" "}
       </h1>
-    <div className="w-[100%] h-[100vh] bg-red-300 flex flex-wrap gap-10 items-center justify-center">
+    <div className="w-[100%] h-[100vh] flex flex-wrap gap-10 items-center justify-center">
         <PartOfList title="Top 5 gainers!" data={topGainers}/>
         <PartOfList title="Top 5 losers!" data={topLosers}/>
         <PartOfList title="Top 5 market cap!" data={topMarketCap}/>
         <PartOfList title="Top 5 volume!" data={topVolume}/>
     </div>
       <ul className="w-10/12 min-h-[10vh] bg-black opacity-50 p-10 flex flex-col items-center gap-5">
-            {listData.data.map((listItem) => (
-                <ListItem data={listItem}/>
+            {listData.data.slice(0, 30).map((listItem) => (
+                <ListItem key={listItem.id} data={listItem}/>
             ))}
       </ul>
     </section>

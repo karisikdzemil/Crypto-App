@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import ListItem from "./ListItem";
+import PartOfList from "./PartOfList";
 
 const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
 export default function Home() {
     const [homeData, setHomeData] = useState([]);
-
 
 useEffect(() => {
     fetch('/api/v1/cryptocurrency/listings/latest', {
@@ -21,7 +20,7 @@ useEffect(() => {
 }, []);
 
     if(!homeData || !homeData.data || homeData.data.length === 0){
-        return <p>CEKA SE</p>
+        return <p>Loading...</p>
     }
 
   return (
@@ -36,15 +35,7 @@ useEffect(() => {
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
       </div>
-      <div className="w-5/12 h-[360px] bg-black opacity-60 rounded-sm flex flex-col justify-center items-center gap-5 p-10">
-        <h1 className="text-white text-xl w-70 h-5 mb-2">Most popular cryptocurency</h1>
-      <ListItem  data={homeData.data[0]} />
-      <ListItem data={homeData.data[1]} />
-      <ListItem data={homeData.data[2]}/>
-      <ListItem data={homeData.data[3]}/>
-      <ListItem data={homeData.data[4]}/>
-
-      </div>
+     <PartOfList title="Most popular cryptocurency" data={homeData.data}/>
     </section>
   );
 }
