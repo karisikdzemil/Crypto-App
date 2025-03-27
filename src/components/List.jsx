@@ -56,7 +56,7 @@ export default function List() {
         <PartOfList title="Top 5 volume!" data={topVolume}/>
     </div>
       <ul className="w-10/12 min-h-[10vh] bg-black opacity-50 p-10 flex flex-col items-center gap-5">
-            {listData.data.slice(0, 30).map((listItem) => (
+            {listData.data.slice(0, 40).map((listItem) => (
                 <ListItem key={listItem.id} data={listItem}/>
             ))}
       </ul>
