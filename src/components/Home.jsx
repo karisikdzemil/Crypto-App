@@ -1,23 +1,6 @@
-// import { useEffect, useState } from "react";
 import PartOfList from "./PartOfList";
 
-// const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
 export default function Home( {data} ) {
-//     const [homeData, setHomeData] = useState([]);
-
-// useEffect(() => {
-//     fetch('/api/v1/cryptocurrency/listings/latest', {
-//         method: 'GET',
-//         headers: {
-//             'X-CMC_PRO_API_KEY': coinCapKey
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         setHomeData(data);
-//     })
-//     .catch(error => console.error("Greška prilikom fetchovanja:", error));
-// }, []);
 
     if(!data || !data.data || data.data.length === 0){
         return <p>Loading...</p> //Here will show Message/>

@@ -11,7 +11,7 @@ export default function ListItem({ data }) {
     percent = <span className="colorGreen">{formatNumber(data.quote.USD.percent_change_24h)}%</span>;
   }
   return (
-      <li className="text-white w-11/12 h-[40px] border-gray-500 rounded-md p-2 flex justify-evenly items-center hover:bg-gray-600 cursor-pointer">
+      <li className="text-white w-full h-[40px] border-gray-500 rounded-md p-2 px-5 flex justify-between items-center hover:bg-gray-600 cursor-pointer">
         <button>/3</button>
          <span>{data.symbol}</span>
          <span className="text-xs">{formatNumber(data.quote.USD.price)}$</span>
