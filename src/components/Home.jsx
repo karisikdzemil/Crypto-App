@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import PartOfList from "./PartOfList";
 
-const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
-export default function Home() {
-    const [homeData, setHomeData] = useState([]);
+// const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
+export default function Home( {data} ) {
+//     const [homeData, setHomeData] = useState([]);
 
-useEffect(() => {
-    fetch('/api/v1/cryptocurrency/listings/latest', {
-        method: 'GET',
-        headers: {
-            'X-CMC_PRO_API_KEY': coinCapKey
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        setHomeData(data);
-    })
-    .catch(error => console.error("Greška prilikom fetchovanja:", error));
-}, []);
+// useEffect(() => {
+//     fetch('/api/v1/cryptocurrency/listings/latest', {
+//         method: 'GET',
+//         headers: {
+//             'X-CMC_PRO_API_KEY': coinCapKey
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         setHomeData(data);
+//     })
+//     .catch(error => console.error("Greška prilikom fetchovanja:", error));
+// }, []);
 
-    if(!homeData || !homeData.data || homeData.data.length === 0){
-        return <p>Loading...</p>
+    if(!data || !data.data || data.data.length === 0){
+        return <p>Loading...</p> //Here will show Message/>
     }
 
   return (
@@ -35,7 +35,7 @@ useEffect(() => {
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
       </div>
-     <PartOfList title="Most popular cryptocurency" data={homeData.data}/>
+     <PartOfList title="Most popular cryptocurency" data={data.data}/>
     </section>
   );
 }

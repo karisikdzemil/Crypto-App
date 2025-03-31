@@ -1,43 +1,25 @@
-import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
 import PartOfList from "./PartOfList";
-const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
-export default function List() {
-    const [listData, setListData] = useState(null);
-  useEffect(() => {
-    async function getListOfCrypto() {
-      try {
-        const response = await fetch("/api/v1/cryptocurrency/listings/latest", {
-            method: 'GET',
-            headers: {
-                'X-CMC_PRO_API_KEY': coinCapKey
-            }
-        });
-        const data = await response.json();
-         setListData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getListOfCrypto()
-  }, []);
-  if(!listData || !listData.data || listData.data.length === 0){
+
+export default function List( {data} ) {
+ 
+  if(!data || !data.data || data.data.length === 0){
     return <p>Loading... </p>
   }
 
-  const topGainers = listData.data
+  const topGainers = data.data
   .sort((a, b) => b.quote.USD.percent_change_24h - a.quote.USD.percent_change_24h)
   .slice(0, 5);
 
-  const topLosers = listData.data
+  const topLosers = data.data
   .sort((a, b) => a.quote.USD.percent_change_24h - b.quote.USD.percent_change_24h)
   .slice(0, 5);
 
-  const topMarketCap = listData.data
+  const topMarketCap = data.data
   .sort((a, b) => b.quote.USD.market_cap - a.quote.USD.market_cap)
   .slice(0, 5);
 
-  const topVolume = listData.data
+  const topVolume = data.data
   .sort((a, b) => b.quote.USD.volume_24h - a.quote.USD.volume_24h)
   .slice(0, 5);
 
@@ -56,7 +38,7 @@ export default function List() {
         <PartOfList title="Top 5 volume!" data={topVolume}/>
     </div>
       <ul className="w-10/12 min-h-[10vh] bg-black opacity-50 p-10 flex flex-col items-center gap-5">
-            {listData.data.slice(0, 20).map((listItem) => (
+            {data.data.slice(0, 20).map((listItem) => (
                 <ListItem key={listItem.id} data={listItem}/>
             ))}
       </ul>
