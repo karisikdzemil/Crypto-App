@@ -23,7 +23,7 @@ function App() {
   }, []);
   function switchPagesHandler(arg){
     setCurrentPage(arg)
-    console.log('switched')
+    console.log('switched');
   }
   return (
     <>

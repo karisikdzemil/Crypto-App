@@ -1,5 +1,6 @@
 import ListItem from "./ListItem";
 import PartOfList from "./PartOfList";
+import FilterList from "./FilterList";
 
 export default function List( {data} ) {
  
@@ -38,7 +39,8 @@ export default function List( {data} ) {
         <PartOfList title="Top 5 volume!" data={topVolume}/>
     </div>
      
-      <ul className="w-10/12 min-h-[10vh] p-10 flex flex-col items-center gap-5">
+      <ul className="w-10/12 min-h-[10vh] p-10 flex flex-col items-left gap-5">
+        <FilterList />
        <ul className="text-white flex w-full justify-between">
        <li>Favorite</li>
         <li>Name</li>
@@ -47,8 +49,8 @@ export default function List( {data} ) {
         <li>Volume (24h)</li>
         <li>Change (24h)</li>
       </ul>
-            {data.data.slice(0, 20).map((listItem) => (
-                <ListItem key={listItem.id} data={listItem}/>
+            {data.data.slice(0, 20).map((listItem, i) => (
+                <ListItem key={listItem.id} data={listItem} i={i +1}/>
             ))}
       </ul>
     </section>
