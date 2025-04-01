@@ -10,10 +10,10 @@ export default function Home( {data} ) {
     <section className="w-full h-[90vh] bg-slate-800 flex items-center gap-5">
       <div className=" w-6/12 h-4/5 flex flex-col items-center text-center justify-center gap-5">
         <h1 className="text-4xl font-extrabold text-white">
-          Welcome to <span className="text-amber-500">Crypto</span>, a site for
+          Welcome to <span className="text-amber-400">Crypto</span>, a site for
           tracking and buying cryptocurrencies!
         </h1>
-        <button className="bg-amber-500 w-40 h-12 text-white rounded-md text-xl font-bold cursor-pointer hover:bg-amber-600">
+        <button className="bg-amber-400 w-40 h-12 text-white rounded-md text-xl font-bold cursor-pointer hover:bg-amber-500">
           Buy Now
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
