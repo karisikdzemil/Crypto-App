@@ -4,14 +4,20 @@
 font-family: 'Inter', sans-serif;
 }
 
+.textSize{
+  width: 80px;
+}
+
 .colorRed{
   /* color: red; */
+  width: 80px;
   background-color: red;
   color: white;
   border-radius: 5px;
   padding: 2px 10px;
 }
 .colorGreen{
+  width: 80px;
   background-color: green;
   color: white;
   border-radius: 5px;

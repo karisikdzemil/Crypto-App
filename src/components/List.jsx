@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ListItem from "./ListItem";
 import PartOfList from "./PartOfList";
-import FilterList from "./FilterList";
+import FilterList from "./filterList";
 import { topGainers } from "../util/formatter";
 import { topLosers } from "../util/formatter";
 import { topMarketCap } from "../util/formatter";
@@ -51,7 +51,7 @@ export default function List({ data }) {
           <li>Change (24h)</li>
         </ul>
         {filteredData.slice(0, 20).map((listItem, i) => (
-          <ListItem key={listItem.id} data={listItem} i={i + 1} />
+          <ListItem key={listItem.id} data={listItem} i={i + 1} favoriteBtn={true} />
         ))}
       </ul>
     </section>
