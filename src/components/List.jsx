@@ -27,6 +27,8 @@ export default function List({ data }) {
 
   if (activeBtn === "All") {
     filteredData = [...data.data];
+  }else if(activeBtn === "Favorites"){
+    filteredData = [...searchCtx.favorites];
   } else if (activeBtn === "Gainers") {
     filteredData = topGainers(data, 20);
   } else if (activeBtn === "Losers") {

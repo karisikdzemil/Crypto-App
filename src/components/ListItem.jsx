@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import SearchContext from "../store/SearchContext";
 import { formatNumber } from "../util/formatter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 export default function ListItem({ data, i, favoriteBtn }) {
+  const searchCtx = useContext(SearchContext);
   if (!data || !data.length === 0) {
     return <p>Loading...</p>;
   }
@@ -15,7 +18,7 @@ export default function ListItem({ data, i, favoriteBtn }) {
   return (
     <li className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 px-7 flex justify-between items-center hover:bg-gray-600 cursor-pointer">
     {favoriteBtn && <span className="text-xs absolute left-1 top-1">{i}.</span>}
-    {favoriteBtn && <button className="text-2xl cursor-pointer hover:text-amber-400 hover:duration-200 ease-in"><FontAwesomeIcon icon={faHeart} /></button>}
+    {favoriteBtn && <button onClick={() => searchCtx.addToFavorites(data)} className="text-2xl cursor-pointer hover:text-amber-400 hover:duration-200 ease-in"><FontAwesomeIcon icon={faHeart} /></button>}
     <span className="w-[50px] text-center">{data.symbol}</span>
     <span className="w-[100px] text-xs text-center">{formatNumber(data.quote.USD.price)}$</span>
     <span className="w-[120px] text-xs text-center">{formatNumber(data.quote.USD.market_cap)}$</span>

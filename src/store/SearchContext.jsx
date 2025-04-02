@@ -2,12 +2,16 @@ import { createContext, useState } from "react";
 
 const SearchContext = createContext({
     isActive: false,
+    foundedCryptos: [],
+    favorites: [],
+    addToFavorites: () => {},
     searchForCryptos: () => {}
 })
 
 export function SearchContextProvider ({children}){
     const [isActive, setisActive] = useState(false);
     const [foundedCryptos, setFoundedCryptos] = useState([]);
+    const [favorites, setFavorites] = useState([]);
 
     function searchForCryptos(event, data){
         event.target.value !== '' ? setisActive(true) : setisActive(false)
@@ -17,11 +21,23 @@ export function SearchContextProvider ({children}){
         setFoundedCryptos(foundCryptos);
         console.log(foundedCryptos)
     }
+    
+    function addToFavorites(data) {
+        const exists = favorites.some(el => el.id === data.id);
+    
+        if (exists) {
+            return setFavorites(prevFav => prevFav.filter(el => el.id !== data.id));
+        }
+    
+        return setFavorites(prevFavorites => [...prevFavorites, data]);
+    }
 
     const searchContext = {
         isActive,
         foundedCryptos,
-        searchForCryptos
+        searchForCryptos,
+        addToFavorites,
+        favorites
     }
 
     return <SearchContext value={searchContext}>{children}</SearchContext>
