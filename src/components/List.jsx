@@ -1,32 +1,40 @@
-import { useState } from "react";
-import ListItem from "./ListItem";
+import { useState, useContext } from "react";
 import PartOfList from "./PartOfList";
 import FilterList from "./filterList";
 import SearchCrypto from "./SearchCrypto";
-import { topGainers } from "../util/formatter";
-import { topLosers } from "../util/formatter";
-import { topMarketCap } from "../util/formatter";
-import { topVolume } from "../util/formatter";
+import SearchContext from "../store/SearchContext";
+import RenderingData from "./RenderingData";
+
+import {
+  topGainers,
+  topLosers,
+  topMarketCap,
+  topVolume,
+} from "../util/formatter";
 
 export default function List({ data }) {
-  const [activeBtn, setActiveBtn] = useState('All');
+  const [activeBtn, setActiveBtn] = useState("All");
+  const searchCtx = useContext(SearchContext);
+
   let filteredData = [];
-  function changeActiveBtn (btnName) {
-      setActiveBtn(btnName);
+  function changeActiveBtn(btnName) {
+    setActiveBtn(btnName);
   }
+
   if (!data || !data.data || data.data.length === 0) {
     return <p>Loading... </p>;
   }
 
-  if(activeBtn === 'All'){
+  if (activeBtn === "All") {
     filteredData = [...data.data];
-  }else if(activeBtn === 'Gainers'){
+  } else if (activeBtn === "Gainers") {
     filteredData = topGainers(data, 20);
-  }else if(activeBtn === 'Losers'){
+  } else if (activeBtn === "Losers") {
     filteredData = topLosers(data, 20);
-  }else if(activeBtn === 'Market'){
-    filteredData = topMarketCap(data, 20)
+  } else if (activeBtn === "Market") {
+    filteredData = topMarketCap(data, 20);
   }
+  console.log(searchCtx.foundedCryptos)
 
   return (
     <section className="w-full min-h-[90vh] bg-slate-900 flex flex-col items-center gap-10 p-10">
@@ -42,8 +50,10 @@ export default function List({ data }) {
       </div>
 
       <ul className="w-10/12 min-h-[10vh] p-10 flex flex-col items-left gap-5">
-        <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn}/>
-        <SearchCrypto data={data}/>
+        <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
+        <SearchCrypto
+          data={data}
+        />
         <ul className="text-white flex w-full justify-between">
           <li>Favorite</li>
           <li>Name</li>
@@ -52,9 +62,7 @@ export default function List({ data }) {
           <li>Volume (24h)</li>
           <li>Change (24h)</li>
         </ul>
-        {filteredData.slice(0, 20).map((listItem, i) => (
-          <ListItem key={listItem.id} data={listItem} i={i + 1} favoriteBtn={true} />
-        ))}
+        {searchCtx.isActive ? <RenderingData arr={searchCtx.foundedCryptos}/> :  <RenderingData arr={filteredData}/>}
       </ul>
     </section>
   );

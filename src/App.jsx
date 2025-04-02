@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import List from "./components/List";
+import { SearchContextProvider } from "./store/SearchContext";
 
 const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
 function App() {
@@ -26,11 +27,11 @@ function App() {
     console.log('switched');
   }
   return (
-    <>
+    <SearchContextProvider>
       <Header switchBtn={switchPagesHandler}/>
       {currentPage === 'Home' && <Home data={data}/>}
       {currentPage === 'List' && <List data={data}/>}
-    </>
+    </SearchContextProvider>
   )
 }
 
