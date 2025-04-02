@@ -14,7 +14,7 @@ export default function Home( {data} ) {
           tracking and buying cryptocurrencies!
         </h1>
         <button className="bg-amber-400 w-40 h-12 text-white rounded-md text-xl font-bold cursor-pointer hover:bg-amber-500">
-          Buy Now
+          Invest
         </button>
         <img className="w-50 " src="icons8-crypto-wallet-64.png" alt="" />
       </div>
