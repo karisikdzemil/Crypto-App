@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 export default function Header({ switchBtn }) {
   return (
-    <header className="w-full h-[10vh] bg-slate-700 p-1.5 px-5 flex gap-80">
+    <header className="w-full h-[10vh] bg-slate-700 p-1.5 px-5 flex gap-20 xs:gap-80">
       <div className="flex justify-center items-center gap-5">
         <img
           className="w-15 h-15 rounded-md"
@@ -10,7 +12,11 @@ export default function Header({ switchBtn }) {
         <h1 className="text-white font-bold text-3xl">Crypto App</h1>
       </div>
 
-      <ul className="w-5/12 flex justify-evenly items-center ">
+      <button className="text-3xl text-white cursor-pointer md:hidden">
+      <FontAwesomeIcon icon={faBars} />
+      </button>
+
+      <ul className="w-5/12 flex justify-evenly items-center hidden md:flex">
         <li
           onClick={() => switchBtn("Home")}
           className={
