@@ -2,6 +2,7 @@ import { useState } from "react";
 import ListItem from "./ListItem";
 import PartOfList from "./PartOfList";
 import FilterList from "./filterList";
+import SearchCrypto from "./SearchCrypto";
 import { topGainers } from "../util/formatter";
 import { topLosers } from "../util/formatter";
 import { topMarketCap } from "../util/formatter";
@@ -42,6 +43,7 @@ export default function List({ data }) {
 
       <ul className="w-10/12 min-h-[10vh] p-10 flex flex-col items-left gap-5">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn}/>
+        <SearchCrypto data={data}/>
         <ul className="text-white flex w-full justify-between">
           <li>Favorite</li>
           <li>Name</li>
