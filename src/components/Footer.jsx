@@ -16,8 +16,8 @@ export default function Footer() {
         <p className="text-white">karisikdzemil@gmail.com</p>
         </div>
       </div>
-      <div className="w-full h-20 bg-slate-700 flex justify-center items-center flex-col ">
-            <p className="text-white text-xl"><span className="text-white bg-transparent border-2 border-white rounded-[50%] text-xs p-1"><FontAwesomeIcon icon={faC} /></span> Created by Djemsy. All rights reserved.</p>
+      <div className="w-full h-20 bg-slate-700 p-5 flex justify-center items-center flex-col ">
+            <p className="text-white text-xs md:text-xl"><span className="text-white bg-transparent border-2 border-white rounded-[50%] text-xs p-1"><FontAwesomeIcon icon={faC} /></span> Created by Djemsy. All rights reserved.</p>
             <div className="flex gap-5">
             <a className="text-white" href="">Github</a>
             <a className="text-white" href="">LinkedIn</a>

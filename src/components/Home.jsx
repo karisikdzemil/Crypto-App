@@ -9,7 +9,7 @@ export default function Home( {data} ) {
   return (
     <section className="w-full h-[90vh] bg-slate-800 p-10 flex items-center gap-5 flex-col md:flex-row">
       <div className=" w-10/12 h-4/5 flex flex-col items-center text-center justify-center gap-5 xs:w-5/12">
-        <h1 className="text-xl font-extrabold text-white xs:text-4xl">
+        <h1 className="text-xl font-extrabold text-white md:text-4xl">
           Welcome to <span className="text-amber-400">Crypto</span>, a site for
           tracking and buying cryptocurrencies!
         </h1>

@@ -1,11 +1,18 @@
 export default function FilterList( {changeActiveBtn, activeBtn} ) {
     return(
-        <ul className="h-20 text-white text-xl font-bold flex gap-15 items-center py-10">
-        <li><button className={`cursor-pointer p-2 ${activeBtn === 'Favorites' ? ' border-b-3 border-amber-300' : ''}`} onClick={() => changeActiveBtn('Favorites')}>Favorites</button></li>
-        <li><button className={`cursor-pointer p-2 ${activeBtn === 'All' ? ' border-b-3 border-amber-300' : ''}`} onClick={() => changeActiveBtn('All')}>All cryptos</button></li>
-        <li><button className={`cursor-pointer p-2 ${activeBtn === 'Gainers' ? ' border-b-3 border-amber-300' : ''}`} onClick={() => changeActiveBtn('Gainers')}>Gainers</button></li>
-        <li><button className={`cursor-pointer p-2 ${activeBtn === 'Losers' ? ' border-b-3 border-amber-300' : ''}`} onClick={() => changeActiveBtn('Losers')}>Losers</button></li>
-        <li><button className={`cursor-pointer p-2 ${activeBtn === 'Market' ? ' border-b-3 border-amber-300' : ''}`} onClick={() => changeActiveBtn('Market')}>Market Cap</button></li>
-      </ul>
+      <ul className="max-w-full h-20 text-white text-sm font-bold flex justify-between md:justify-start gap-1 items-center py-4 px-4 md:text-xl md:gap-2 flex-nowrap">
+      {['Favorites', 'All', 'Gainers', 'Losers', 'Market'].map((item) => (
+        <li key={item} className="max-w-[19%]">
+          <button
+            className={`cursor-pointer p-2 transition-all duration-200 text-sm md:text-2xl ${
+              activeBtn === item ? 'border-b-4 border-amber-300' : ''
+            }`}
+            onClick={() => changeActiveBtn(item)}
+          >
+            {item}
+          </button>
+        </li>
+      ))}
+    </ul>
     )
 }

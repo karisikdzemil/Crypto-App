@@ -9,14 +9,14 @@ export default function Header({ switchBtn }) {
           src="icons8-crypto-64.png"
           alt=""
         />
-        <h1 className="text-white font-bold text-3xl">Crypto App</h1>
+        <h1 className="text-white font-bold text-md md:text-3xl">Crypto App</h1>
       </div>
 
       <button className="text-3xl text-white cursor-pointer md:hidden">
       <FontAwesomeIcon icon={faBars} />
       </button>
 
-      <ul className="w-5/12 flex justify-evenly items-center hidden md:flex">
+      <ul className="w-5/12 justify-evenly items-center md:flex hidden ">
         <li
           onClick={() => switchBtn("Home")}
           className={

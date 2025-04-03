@@ -21,8 +21,8 @@ export default function ListItem({ data, i, favoriteBtn }) {
     {favoriteBtn && <button onClick={() => searchCtx.addToFavorites(data)} className="text-2xl cursor-pointer hover:text-amber-400 hover:duration-200 ease-in"><FontAwesomeIcon icon={faHeart} /></button>}
     <span className="w-[50px] text-center">{data.symbol}</span>
     <span className="w-[100px] text-xs text-center">{formatNumber(data.quote.USD.price)}$</span>
-    <span className="w-[120px] text-xs text-center hidden xs:block">{formatNumber(data.quote.USD.market_cap)}$</span>
-    <span className="w-[120px] text-xs text-center hidden xs:block">{formatNumber(data.quote.USD.volume_24h)}$</span>
+    <span className="w-[120px] text-xs text-center hidden md:block">{formatNumber(data.quote.USD.market_cap)}$</span>
+    <span className="w-[120px] text-xs text-center hidden md:block">{formatNumber(data.quote.USD.volume_24h)}$</span>
     {percent}
   </li>
   
