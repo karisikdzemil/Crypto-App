@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import SearchContext from "../store/SearchContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-export default function Header({ switchBtn }) {
+export default function Header() {
+  const searchCtx = useContext(SearchContext);
   return (
     <header className="w-full h-[10vh] bg-slate-700 p-1.5 px-5 flex gap-20 xs:gap-80">
       <div className="flex justify-center items-center gap-5">
@@ -18,7 +21,7 @@ export default function Header({ switchBtn }) {
 
       <ul className="w-5/12 justify-evenly items-center md:flex hidden ">
         <li
-          onClick={() => switchBtn("Home")}
+          onClick={() => searchCtx.switchPages('Home')}
           className={
             " text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer"
           }
@@ -26,7 +29,7 @@ export default function Header({ switchBtn }) {
           Home{" "}
         </li>
         <li
-          onClick={() => switchBtn("List")}
+          onClick={() => searchCtx.switchPages('List')}
           className="text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer"
         >
           List{" "}

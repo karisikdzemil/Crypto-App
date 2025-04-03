@@ -51,18 +51,19 @@ export default function List({ data }) {
         <PartOfList title="Top 5 volume!" data={topVolume(data, 5)} />
       </div>
 
-      <ul className="min-w-10/12 min-h-[10vh] p-2 flex flex-col items-left gap-5 md:max-w-5/12 md:p-10">
+      <ul className="min-w-5/12 min-h-[10vh] p-2 flex flex-col items-left gap-5 md:min-w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
         <SearchCrypto
           data={data}
         />
-        <ul className="text-white flex w-full justify-between">
+        <ul className="text-white flex w-full justify-evenly">
           <li>Favorite</li>
           <li>Name</li>
           <li>Value</li>
           <li className="hidden md:block">Market Cap</li>
           <li className="hidden md:block">Volume (24h)</li>
           <li>Change (24h)</li>
+          <li>Actions</li>
         </ul>
         {searchCtx.isActive ? <RenderingData arr={searchCtx.foundedCryptos}/> :  <RenderingData arr={filteredData}/>}
       </ul>
