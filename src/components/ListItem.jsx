@@ -25,7 +25,7 @@ export default function ListItem({ data, i, favoriteBtn }) {
     <span className="w-[120px] text-xs text-center hidden md:block">{formatNumber(data.quote.USD.volume_24h)}$</span>
     {percent}
    {favoriteBtn && <div className="w-15 flex justify-between ml-5">
-      <button className="relative group flex flex-col items-center">
+      <button onClick={() => searchCtx.switchPages('Info')} className="relative group flex flex-col items-center">
       <FontAwesomeIcon className="fas fa-info-circle text-2xl text-gray-500 cursor-pointer" icon={faCalendarWeek} />
       <span className="absolute top-8 scale-0 group-hover:scale-100 transition-transform bg-gray-700 text-white text-xs rounded py-1 px-2">Info</span>
       </button>
