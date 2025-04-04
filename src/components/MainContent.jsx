@@ -1,11 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-// import SearchContext from "./store/SearchContext";
 import SearchContext from "../store/SearchContext";
-// import Home from "./components/Home";
 import Home from "./Home";
-// import List from "./components/List";
 import List from "./List";
-// import CryptoInfo from "./components/CrytpoInfo";
 import CryptoInfo from "./CrytpoInfo";
 
 const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";

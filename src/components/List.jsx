@@ -36,7 +36,6 @@ export default function List({ data }) {
   } else if (activeBtn === "Market") {
     filteredData = topMarketCap(data, 20);
   }
-  console.log(searchCtx.foundedCryptos)
 
   return (
     <section className="w-full min-h-[90vh] bg-slate-900 flex flex-col items-center gap-10 p-5 md:p-10">
