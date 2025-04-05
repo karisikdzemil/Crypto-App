@@ -29,7 +29,7 @@ function MainContent() {
         <>
             {searchCtx.currentPage === 'Home' && <Home data={data}/>}
             {searchCtx.currentPage === 'List' && <List data={data}/>}
-            {searchCtx.currentPage === 'Info' && <CryptoInfo />}
+            {searchCtx.currentPage === 'Info' && <CryptoInfo data={data}/>}
         </>
     );
 }
