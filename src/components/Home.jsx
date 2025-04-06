@@ -1,4 +1,4 @@
-import PartOfList from "./PartOfList";
+import PartOfList from "./list/PartOfList";
 
 export default function Home( {data} ) {
 

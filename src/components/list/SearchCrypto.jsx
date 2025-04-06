@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import SearchContext from "../store/SearchContext"
+import SearchContext from "../../store/SearchContext"
 export default function SearchCrypto ( {data} ) {
     const searchCtx = useContext(SearchContext);
     return(

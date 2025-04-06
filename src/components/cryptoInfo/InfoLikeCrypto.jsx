@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import SearchContext from "../store/SearchContext"
+import SearchContext from "../../store/SearchContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 

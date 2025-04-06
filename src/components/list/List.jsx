@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import PartOfList from "./PartOfList";
-import FilterList from "./filterList";
+import FilterList from "./FilterList";
 import SearchCrypto from "./SearchCrypto";
-import SearchContext from "../store/SearchContext";
+import SearchContext from "../../store/SearchContext";
 import RenderingData from "./RenderingData";
 
 import {
@@ -10,7 +10,7 @@ import {
   topLosers,
   topMarketCap,
   topVolume,
-} from "../util/formatter";
+} from "../../util/formatter";
 
 export default function List({ data }) {
   const [activeBtn, setActiveBtn] = useState("All");

@@ -1,19 +1,20 @@
-import SearchContext from "../store/SearchContext";
+import SearchContext from "../../store/SearchContext";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBitcoinSign,
   faMoneyBillWave,
 } from "@fortawesome/free-solid-svg-icons";
-import { formatNumber } from "../util/formatter";
+import { formatNumber } from "../../util/formatter";
 import InfoLikeCrypto from "./InfoLikeCrypto";
 import {
   topGainers,
   // topLosers,
   // topMarketCap,
   // topVolume,
-} from "../util/formatter";
-import PartOfList from './PartOfList';
+} from "../../util/formatter";
+import PartOfList from '../list/PartOfList';
+import PriceHistoryTable from "./PriceHistoryTable";
 
 export default function CryptoInfo( {data} ) {
   const searchCtx = useContext(SearchContext);
@@ -76,6 +77,8 @@ export default function CryptoInfo( {data} ) {
             The total supply is also reported as <span className="font-bold">{formatNumber(searchCtx.cryptoInformation.total_supply)} {searchCtx.cryptoInformation.symbol}</span>.
           </p>
         </div>
+
+        <PriceHistoryTable data={searchCtx.cryptoInformation}/>
       
       </div>
 
