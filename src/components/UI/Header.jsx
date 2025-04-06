@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import SearchContext from "../store/SearchContext";
+import SearchContext from "../../store/SearchContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 export default function Header() {

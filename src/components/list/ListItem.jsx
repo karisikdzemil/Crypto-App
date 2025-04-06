@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import SearchContext from "../store/SearchContext";
-import { formatNumber } from "../util/formatter";
+import SearchContext from "../../store/SearchContext";
+import { formatNumber } from "../../util/formatter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCalendarWeek, faChartSimple } from "@fortawesome/free-solid-svg-icons";
 export default function ListItem({ data, i, favoriteBtn }) {
