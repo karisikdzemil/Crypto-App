@@ -21,7 +21,7 @@ export default function ListItem({ data, i, favoriteBtn }) {
     percent = <span className="colorGreen text-center">{formatNumber(data.quote.USD.percent_change_24h)}%</span>;
   }
   return (
-    <li className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 px-7 flex justify-between items-center hover:bg-gray-800 cursor-pointer">
+    <li className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 px-5 flex gap-3 justify-between items-center hover:bg-gray-800 cursor-pointer">
     {favoriteBtn && <span className="text-xs absolute left-1 top-1">{i}.</span>}
     {favoriteBtn && <button onClick={() => searchCtx.addToFavorites(data)} className="text-2xl cursor-pointer hover:text-amber-400 hover:duration-200 ease-in"><FontAwesomeIcon icon={faHeart} /></button>}
     <span className="w-[50px] text-center">{data.symbol}</span>
