@@ -1,25 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBillWave, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
+
+import {
+  faMoneyBillWave,
+  faMoneyBill,
+} from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import SearchContext from "../../store/SearchContext";
 export default function InfoBuyCrypto() {
-    const [activeBuyBtn, setActiveBuyBtn] = useState('byCrypto');
-    const searchCtx = useContext(SearchContext);
+  const [activeBuyBtn, setActiveBuyBtn] = useState("byCrypto");
+  const searchCtx = useContext(SearchContext);
 
-    function changeBtnToCryptoHandler () {
-        setActiveBuyBtn('byCrypto');
-    }
-    function changeBtnToCashHandler () {
-        setActiveBuyBtn('byCash');
-    }
+  function changeBtnToCryptoHandler() {
+    setActiveBuyBtn("byCrypto");
+  }
+  function changeBtnToCashHandler() {
+    setActiveBuyBtn("byCash");
+  }
 
   return (
     <div className="sm:w-1/1 min-w-80 min-h-96 flex flex-col items-center">
       <div className="w-10/12 h-[10vh] flex gap-7">
-        {<button onClick={changeBtnToCryptoHandler} className={`text-white font-bold cursor-pointer h-12 transition-all duration-200 text-sm md:text-2xl ${activeBuyBtn === 'byCrypto' ? 'border-b-4 border-amber-300' : ''}`}>
-          By {searchCtx.cryptoInformation.symbol}
-        </button>}
-        <button onClick={changeBtnToCashHandler} className={`text-white font-bold cursor-pointer h-12 p-2 transition-all duration-200 text-sm md:text-2xl ${activeBuyBtn === 'byCash' ? 'border-b-4 border-amber-300' : ''}`}>
+        {
+          <button
+            onClick={changeBtnToCryptoHandler}
+            className={`text-white font-bold cursor-pointer h-12 transition-all duration-200 text-sm md:text-2xl ${
+              activeBuyBtn === "byCrypto" ? "border-b-4 border-amber-300" : ""
+            }`}
+          >
+            By {searchCtx.cryptoInformation.symbol}
+          </button>
+        }
+        <button
+          onClick={changeBtnToCashHandler}
+          className={`text-white font-bold cursor-pointer h-12 p-2 transition-all duration-200 text-sm md:text-2xl ${
+            activeBuyBtn === "byCash" ? "border-b-4 border-amber-300" : ""
+          }`}
+        >
           By cash
         </button>
       </div>
@@ -28,13 +45,41 @@ export default function InfoBuyCrypto() {
         <input
           type="number"
           placeholder="0.00"
-          className="w-10/12 bg-gray-600  rounded-md p-5 text-white"
+          className="w-9/12 h-10 bg-gray-600 rounded-md p-5 text-white"
         />
-        <span className="text-white font-bold"> <span className="text-green-400 text-xs"><FontAwesomeIcon icon={faMoneyBill} /></span>{activeBuyBtn === 'byCrypto' ? searchCtx.cryptoInformation.symbol : 'CASH'}</span>
+        {/* <span className="text-white font-bold"> <span className="text-green-400 text-xs"><FontAwesomeIcon icon={faMoneyBill} /></span>{activeBuyBtn === 'byCrypto' ? searchCtx.cryptoInformation.symbol : 'CASH'}</span> */}
+       <span className="text-white font-bold">
+  {activeBuyBtn === "byCrypto" ? (
+    <span className="text-amber-400 flex items-center gap-1">
+      <FontAwesomeIcon icon={faBitcoin} />
+      <span className="text-white font-bold">
+        {searchCtx.cryptoInformation.symbol}
+      </span>
+    </span>
+  ) : (
+    <span className="text-green-400 flex items-center gap-1">
+      <FontAwesomeIcon icon={faMoneyBill} />
+      <span className="text-white font-bold">
+        CASH
+      </span>
+    </span>
+  )}
+</span>
+
       </div>
       <div className="w-10/12 h-[10vh] flex justify-between">
-        <span className="text-white font-bold text-xl">{activeBuyBtn === 'byCrypto' ? searchCtx.cryptoInformation.symbol : 'USD'} =</span>
-        <span className="text-white font-bold text-xl">{activeBuyBtn !== 'byCrypto' ? searchCtx.cryptoInformation.symbol : 'USD'} $0.00</span>
+        <span className="text-white font-bold text-xl">
+          {activeBuyBtn === "byCrypto"
+            ? searchCtx.cryptoInformation.symbol
+            : "USD"}{" "}
+          =
+        </span>
+        <span className="text-white font-bold text-xl">
+          {activeBuyBtn !== "byCrypto"
+            ? searchCtx.cryptoInformation.symbol
+            : "USD"}{" "}
+          $0.00
+        </span>
       </div>
       <div className="w-10/12 h-20 flex flex-col gap-2">
         <p className="text-xs font-bold">

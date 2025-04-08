@@ -10,7 +10,7 @@ const SearchContext = createContext({
     currentPage: 'Home',
     getCryptoInfo: () => {},
     cryptoInformation: {}
-})
+});
 
 export function SearchContextProvider ({children}){
     const [isActive, setisActive] = useState(false);

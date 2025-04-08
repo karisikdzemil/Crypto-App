@@ -2,7 +2,6 @@ import SearchContext from "../../store/SearchContext";
 import { useContext } from "react";
 import InfoBuyCrypto from "./InfoBuyCrypto";
 import {
-  topGainers,
   topMarketCap,
 } from "../../util/formatter";
 import PriceHistoryTable from "./PriceHistoryTable";

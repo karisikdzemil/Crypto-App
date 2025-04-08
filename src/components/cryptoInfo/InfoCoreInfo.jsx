@@ -2,7 +2,7 @@ import SearchContext from "../../store/SearchContext";
 import { useContext } from "react";
 import { formatNumber } from "../../util/formatter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBitcoinSign } from "@fortawesome/free-solid-svg-icons";
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
 import InfoLikeCrypto from "./InfoLikeCrypto";
 export default function InfoCoreInfo() {
     const searchCtx = useContext(SearchContext);
@@ -31,8 +31,8 @@ export default function InfoCoreInfo() {
     <div className="w-1/1 md:w-3xl p-5 min-h-96">
       <div className="max-w-96 h-[20vh]">
         <div className="w-full sm:w-full h-1/2 flex items-center justify-start gap-5">
-          <span className="text-2xl md:text-4xl bg-amber-400 text-white w-12 h-12 text-center">
-            <FontAwesomeIcon icon={faBitcoinSign} />
+          <span className="text-5xl text-white text-center">
+            <FontAwesomeIcon icon={faBitcoin} />
           </span>
           <h1 className="sm:text-2xl text-xl text-white ">
             <span>{searchCtx.cryptoInformation.name} </span>Price
