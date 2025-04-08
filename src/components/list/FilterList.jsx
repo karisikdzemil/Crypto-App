@@ -5,7 +5,7 @@ export default function FilterList( {changeActiveBtn, activeBtn} ) {
         <li key={item} className="max-w-[19%]">
           <button
             className={`cursor-pointer p-2 transition-all duration-200 text-sm md:text-2xl ${
-              activeBtn === item ? 'border-b-4 border-amber-300' : ''
+              activeBtn === item ? 'border-b-4 border-yellow-400' : ''
             }`}
             onClick={() => changeActiveBtn(item)}
           >

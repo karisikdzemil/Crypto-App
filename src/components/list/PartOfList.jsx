@@ -9,3 +9,4 @@ export default function PartOfList( {title, data } ){
         </div>
     )
 }
+// dizajn suttraa

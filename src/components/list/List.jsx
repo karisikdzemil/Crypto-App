@@ -38,10 +38,10 @@ export default function List({ data }) {
   }
 
   return (
-    <section className="w-full min-h-[90vh] bg-slate-900 flex flex-col items-center gap-10 p-5 md:p-10">
+    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex flex-col items-center gap-10 p-5 md:p-10">
       <h1 className="text-4xl mt-5 text-white w-90 text-center font-bold">
         {" "}
-        <span className="text-amber-400">MARKET</span> OVERVIEW{" "}
+        <span className="text-yellow-400">MARKET</span> OVERVIEW{" "}
       </h1>
       <div className="w-[100%] min-h-[100vh] flex flex-col md:flex-row flex-wrap gap-10 items-center justify-center ">
         <PartOfList title="Top 5 gainers!" data={topGainers(data, 5)} />
