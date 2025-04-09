@@ -24,7 +24,7 @@ export default function InfoLikeCrypto () {
           <button onClick={dislikeHandler} className="w-18 h-8 rounded-md text-white font-bold cursor-pointer bg-gray-700">Bad <FontAwesomeIcon icon={faThumbsDown} /></button>
           </div>
         </div>
-        <div className="bg-gray-700 rounded-md w-full h-2/5 flex justify-center  relative p-3">
+        <div className="bg-[#1E2329] rounded-md w-full h-2/5 flex justify-center  relative p-3">
           <div className="w-full h-1/2 flex items-center gap-5 justify-center">
           <p className=" w-18 rounded-md text-white xs:block absolute top-1 left-1 ">Good <FontAwesomeIcon icon={faThumbsUp} /> </p>
             <div className="w-full xs:w-2/3 h-1/3 flex gap-3 items-center mt-10">

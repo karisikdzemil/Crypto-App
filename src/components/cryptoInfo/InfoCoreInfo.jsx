@@ -12,14 +12,14 @@ export default function InfoCoreInfo() {
           {formatNumber(searchCtx.cryptoInformation.quote.USD.percent_change_24h)}%
         </span>
       );
-      if (searchCtx.cryptoInformation.quote.USD.percent_change_24h < -0.5) {
+      if (searchCtx.cryptoInformation.quote.USD.percent_change_24h < -0.1) {
         percent = (
           <span className="colorRed text-center">
             {formatNumber(searchCtx.cryptoInformation.quote.USD.percent_change_24h)}
             %
           </span>
         );
-      } else if (searchCtx.cryptoInformation.quote.USD.percent_change_24h > 0.5) {
+      } else if (searchCtx.cryptoInformation.quote.USD.percent_change_24h > 0.1) {
         percent = (
           <span className="colorGreen text-center">
             {formatNumber(searchCtx.cryptoInformation.quote.USD.percent_change_24h)}
@@ -31,7 +31,7 @@ export default function InfoCoreInfo() {
     <div className="w-1/1 md:w-3xl p-5 min-h-96">
       <div className="max-w-96 h-[20vh]">
         <div className="w-full sm:w-full h-1/2 flex items-center justify-start gap-5">
-          <span className="text-5xl text-white text-center">
+          <span className="text-5xl text-[#F0B90B] text-center">
             <FontAwesomeIcon icon={faBitcoin} />
           </span>
           <h1 className="sm:text-2xl text-xl text-white ">

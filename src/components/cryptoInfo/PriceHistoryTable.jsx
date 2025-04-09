@@ -26,9 +26,9 @@ const PriceHistoryTable = ({ data }) => {
 
   return (
     <div className="overflow-x-auto mt-6 w-full">
-      <table className="min-w-full bg-slate-800 text-white border border-slate-700">
+      <table className="min-w-full bg-[#1E2329] text-white border border-slate-700">
         <thead>
-          <tr className="bg-slate-700 text-sm text-left">
+          <tr className="bg-[#1E2329] text-sm text-left">
             <th className="p-3 border-b border-slate-600">Date comparison</th>
             <th className="p-3 border-b border-slate-600">Amount change</th>
             <th className="p-3 border-b border-slate-600">% Change</th>

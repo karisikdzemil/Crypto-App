@@ -38,10 +38,10 @@ export default function List({ data }) {
   }
 
   return (
-    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex flex-col items-center gap-10 p-5 md:p-10">
+    <section className="w-full min-h-[90vh] bg-[#0B0E11] flex flex-col items-center gap-10 p-5 md:p-10">
       <h1 className="text-4xl mt-5 text-white w-90 text-center font-bold">
         {" "}
-        <span className="text-yellow-400">MARKET</span> OVERVIEW{" "}
+        <span className="text-[#F0B90B]">MARKET</span> OVERVIEW{" "}
       </h1>
       <div className="w-[100%] min-h-[100vh] flex flex-col md:flex-row flex-wrap gap-10 items-center justify-center ">
         <PartOfList title="Top 5 gainers!" data={topGainers(data, 5)} />
@@ -50,12 +50,12 @@ export default function List({ data }) {
         <PartOfList title="Top 5 volume!" data={topVolume(data, 5)} />
       </div>
 
-      <ul className="min-w-5/12 min-h-[10vh] p-2 flex flex-col items-left gap-5 md:min-w-10/12 md:p-10">
+      <ul className=" min-w-5/12 min-h-[10vh] p-2 flex flex-col items-left gap-5 md:min-w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
         <SearchCrypto
           data={data}
         />
-        <ul className="text-white flex w-full justify-evenly">
+        <ul className="text-white flex w-full justify-between">
           <li>Favorite</li>
           <li>Name</li>
           <li>Value</li>

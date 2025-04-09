@@ -25,7 +25,7 @@ export default function InfoBuyCrypto() {
           <button
             onClick={changeBtnToCryptoHandler}
             className={`text-white font-bold cursor-pointer h-12 transition-all duration-200 text-sm md:text-2xl ${
-              activeBuyBtn === "byCrypto" ? "border-b-4 border-amber-300" : ""
+              activeBuyBtn === "byCrypto" ? "border-b-4 border-[#FCD535]" : ""
             }`}
           >
             By {searchCtx.cryptoInformation.symbol}
@@ -34,23 +34,23 @@ export default function InfoBuyCrypto() {
         <button
           onClick={changeBtnToCashHandler}
           className={`text-white font-bold cursor-pointer h-12 p-2 transition-all duration-200 text-sm md:text-2xl ${
-            activeBuyBtn === "byCash" ? "border-b-4 border-amber-300" : ""
+            activeBuyBtn === "byCash" ? "border-b-4 border-[#FCD535]" : ""
           }`}
         >
           By cash
         </button>
       </div>
-      <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-gray-600 ">
+      <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-[#1E2329] ">
         <h2 className="absolute top-1 left-5 font-bold text-white">Buy</h2>
         <input
           type="number"
           placeholder="0.00"
-          className="w-9/12 h-10 bg-gray-600 rounded-md p-5 text-white"
+          className="w-9/12 h-10 bg-[#1E2329] rounded-md p-5 text-white"
         />
         {/* <span className="text-white font-bold"> <span className="text-green-400 text-xs"><FontAwesomeIcon icon={faMoneyBill} /></span>{activeBuyBtn === 'byCrypto' ? searchCtx.cryptoInformation.symbol : 'CASH'}</span> */}
        <span className="text-white font-bold">
   {activeBuyBtn === "byCrypto" ? (
-    <span className="text-amber-400 flex items-center gap-1">
+    <span className="text-[#F0B90B] flex items-center gap-1">
       <FontAwesomeIcon icon={faBitcoin} />
       <span className="text-white font-bold">
         {searchCtx.cryptoInformation.symbol}
@@ -86,7 +86,7 @@ export default function InfoBuyCrypto() {
           <FontAwesomeIcon icon={faMoneyBillWave} /> 0% trading fee on USDT/USD
           spot trading pair.
         </p>
-        <button className="w-12/12 h-[6vh] cursor-pointer bg-amber-400 text-slate-900 font-bold rounded-md">
+        <button className="w-12/12 h-[6vh] cursor-pointer hover:bg-[#F0B90B] bg-[#FCD535] text-slate-900 font-bold rounded-md">
           Log in & Buy USDT
         </button>
       </div>

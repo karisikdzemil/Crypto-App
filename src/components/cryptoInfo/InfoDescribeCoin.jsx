@@ -4,7 +4,7 @@ import { formatNumber } from "../../util/formatter";
 export default function InfoDescribeCoin () {
     const searchCtx = useContext(SearchContext);
     return(
-        <div className=" w-full m-5 text-xs sm:text-base min-h-50 p-10 flex flex-col gap-5 bg-gray-700 rounded-md">
+        <div className=" w-full m-5 text-xs sm:text-base min-h-50 p-10 flex flex-col gap-5 bg-[#1E2329] rounded-md">
         <h1 className="sm:text-xl text-20 font-bold text-white">💰 Current Supply and Market Ranking</h1>
         <p className="text-left text-white">
            <span className="font-bold">{searchCtx.cryptoInformation.name}</span> currently holds the <span className="font-bold">#{searchCtx.cryptoInformation.cmc_rank} </span>

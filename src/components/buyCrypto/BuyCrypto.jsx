@@ -16,7 +16,7 @@ export default function BuyCrypto({ data }) {
     return <p>Loading... </p>;
   }
   return (
-    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] xs:p-10">
+    <section className="w-full min-h-[90vh] bg-[#0B0E11] xs:p-10">
       <div className="w-full min-h-[30vh] flex flex-wrap-reverse items-center justify-center">
         <div className="md:w-3/5 w-full min-h-[30vh] py-5 my-10 flex flex-col items-center justify-center ">
 
