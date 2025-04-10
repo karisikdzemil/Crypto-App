@@ -6,8 +6,6 @@ const SearchContext = createContext({
     favorites: [],
     addToFavorites: () => {},
     searchForCryptos: () => {},
-    switchPages: () => {},
-    currentPage: 'Home',
     getCryptoInfo: () => {},
     cryptoInformation: {}
 });
@@ -16,7 +14,6 @@ export function SearchContextProvider ({children}){
     const [isActive, setisActive] = useState(false);
     const [foundedCryptos, setFoundedCryptos] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    const [currentPage, setCurrentPage] = useState('Home');
     const [cryptoInformation, setCryptoInformation] = useState({});
     
 
@@ -39,10 +36,6 @@ export function SearchContextProvider ({children}){
         return setFavorites(prevFavorites => [...prevFavorites, data]);
     }
 
-    function switchPages(arg){
-        setCurrentPage(arg)
-      }
-
       function getCryptoInfo (data) {
         setCryptoInformation(data);
       }
@@ -53,8 +46,6 @@ export function SearchContextProvider ({children}){
         searchForCryptos,
         addToFavorites,
         favorites,
-        switchPages,
-        currentPage,
         cryptoInformation,
         getCryptoInfo
     }

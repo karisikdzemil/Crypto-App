@@ -50,7 +50,7 @@ export default function List({ data }) {
         <PartOfList title="Top 5 volume!" data={topVolume(data, 5)} />
       </div>
 
-      <ul className=" min-w-5/12 min-h-[10vh] p-2 flex flex-col items-left gap-5 md:min-w-10/12 md:p-10">
+      <ul className=" min-w-5/12 w-full min-h-[10vh] p-2 flex flex-col items-left gap-5 md:w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
         <SearchCrypto
           data={data}
