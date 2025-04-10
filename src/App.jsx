@@ -5,6 +5,7 @@ import { SearchContextProvider } from "./store/SearchContext";
 import List from "./components/pages/List";
 import BuyCrypto from "./components/pages/BuyCrypto";
 import RootLayout from "./components/pages/RootLayout";
+import CryptoInfo from "./components/pages/CrytpoInfo";
 
 function App() {
       const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
@@ -28,8 +29,8 @@ function App() {
     {path: '/', element: <RootLayout />, children: [
       {index: true, element: <Home data={data}/>},
       {path: '/list', element: <List data={data}/>},
-      {path: '/buy', element: <BuyCrypto data={data} buyOrSell={true}/>},
-      {path: '/sell', element: <BuyCrypto data={data} buyOrSell={false}/>},
+      {path: '/buy-sell', element: <BuyCrypto data={data} buyOrSell={true}/>},
+      {path: '/crypto-info', element: <CryptoInfo data={data}/>},
     ]}
   ])
    

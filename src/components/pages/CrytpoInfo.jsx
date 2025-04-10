@@ -1,13 +1,13 @@
 import SearchContext from "../../store/SearchContext";
 import { useContext } from "react";
-import InfoBuyCrypto from "./InfoBuyCrypto";
+import InfoBuyCrypto from "../cryptoInfo/InfoBuyCrypto";
 import {
   topMarketCap,
 } from "../../util/formatter";
-import PriceHistoryTable from "./PriceHistoryTable";
-import InfoDescribeCoin from "./InfoDescribeCoin";
-import InfoCoreInfo from "./InfoCoreInfo";
-import MarketInfo from "./MarketInfo";
+import PriceHistoryTable from "../cryptoInfo/PriceHistoryTable";
+import InfoDescribeCoin from "../cryptoInfo/InfoDescribeCoin";
+import InfoCoreInfo from "../cryptoInfo/InfoCoreInfo";
+import MarketInfo from "../cryptoInfo/MarketInfo";
 import ListItem from "../list/ListItem";
 
 export default function CryptoInfo( {data} ) {

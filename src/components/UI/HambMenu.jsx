@@ -1,29 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faHouse, faListUl, faCartShopping, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import HambMenu from "./HambMenu";
-import { useState } from "react";
-export default function Header() {
-  const [hambMenu, setHambMenu] = useState(false);
-
-  function hambMenuHandler() {
-    setHambMenu(prevMenu => !prevMenu);
-  }
-
+export default function HambMenu({ hambMenuHandler }) {
   return (
-    <header className="w-full h-[10vh] bg-[#0B0E11] p-1.5 px-5 flex gap-20 xs:gap-80">
-      <div className="flex justify-center items-center gap-5">
-        <img className="w-15 h-15 rounded-md" src="image.png" alt="" />
+    <div className="w-2/3 h-full bg-[#1A1C22ff] absolute top-0 right-0 z-10">
+      <div className="w-full h-20 flex items-center justify-between">
+       <div className="w-2/3 flex items-center gap-2">
+       <img className="w-15 h-15 rounded-md" src="image.png" alt="" />
         <h1 className=" text-[#F0B90B] text-md md:text-4xl">
           Crypto <span className="text-white">App</span>
         </h1>
+       </div>
+        <button
+          className="w-12 h-12 text-2xl text-white bg-black opacity-60 cursor-pointer"
+          onClick={() => hambMenuHandler()}
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
       </div>
-
-      <button onClick={hambMenuHandler} className="text-3xl text-white cursor-pointer sm:hidden">
-        <FontAwesomeIcon icon={faBars} />
-      </button>
-        {hambMenu && <HambMenu hambMenuHandler={hambMenuHandler}/>}
-      <ul className="w-5/12 justify-evenly items-center sm:flex hidden ">
+      <ul className="w-full min-h-1/2 justify-evenly items-center flex flex-col">
         <li>
           <NavLink
             to="/"
@@ -34,6 +29,7 @@ export default function Header() {
             }
             end
           >
+            <FontAwesomeIcon className="mr-2" icon={faHouse} /> 
             Home
           </NavLink>
         </li>
@@ -46,6 +42,7 @@ export default function Header() {
               }`
             }
           >
+            <FontAwesomeIcon className="mr-2" icon={faListUl} />
             List
           </NavLink>
         </li>
@@ -58,6 +55,7 @@ export default function Header() {
               }`
             }
           >
+            <FontAwesomeIcon className="mr-2" icon={faCartShopping} />
             Buy
           </NavLink>
         </li>
@@ -70,10 +68,11 @@ export default function Header() {
               }`
             }
           >
-            Sell
+            <FontAwesomeIcon className="mr-2" icon={faPhone} />
+            Contact
           </NavLink>
         </li>
       </ul>
-    </header>
+    </div>
   );
 }
