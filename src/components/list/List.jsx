@@ -38,7 +38,7 @@ export default function List({ data }) {
   }
 
   return (
-    <section className="w-full min-h-[90vh] bg-[#0B0E11] flex flex-col items-center gap-10 p-5 md:p-10">
+    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex flex-col items-center gap-10 p-5 md:p-10">
       <h1 className="text-4xl mt-5 text-white w-90 text-center font-bold">
         {" "}
         <span className="text-[#F0B90B]">MARKET</span> OVERVIEW{" "}

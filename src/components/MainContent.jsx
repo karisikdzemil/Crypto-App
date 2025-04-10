@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import SearchContext from "../store/SearchContext";
-import Home from "./home/Home";
+import Home from './home/Home'
 import List from "./list/List";
 import CryptoInfo from "./cryptoInfo/CrytpoInfo";
 import BuyCrypto from "./buyCrypto/BuyCrypto";
@@ -29,7 +29,7 @@ function MainContent() {
     return (
         <>
             {/* {searchCtx.currentPage === 'Home' && <Home data={data}/>} */}
-            {searchCtx.currentPage === 'Home' && <Home data={data}/>}
+            {searchCtx.currentPage === 'Home' && <BuyCrypto data={data}/>}
             {searchCtx.currentPage === 'List' && <List data={data}/>}
             {searchCtx.currentPage === 'Info' && <CryptoInfo data={data}/>}
         </>
