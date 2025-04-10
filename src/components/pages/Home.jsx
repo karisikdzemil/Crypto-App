@@ -1,5 +1,5 @@
 import PartOfList from "../list/PartOfList";
-import HomeDisplayImg from "./HomeDisplayImg";
+import HomeDisplayImg from "../home/HomeDisplayImg";
 
 export default function Home( {data} ) {
 
@@ -8,7 +8,7 @@ export default function Home( {data} ) {
     }
 
   return (
-    <>    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] p-10 flex items-center gap-5 flex-col xs:flex-row">
+    <>    <section className="w-full min-h-[90vh] bg-[#1A1C22ff] p-10 flex items-center gap-5 flex-col sm:flex-row">
       <div className=" w-6/12 h-4/5 flex flex-col items-center text-center justify-evenly gap-5 xs:w-5/12">
         <h1 className="text-xl font-extrabold text-white md:text-5xl w-full">
           Welcome to <span className="text-[#F0B90B]">Crypto</span>, a site for

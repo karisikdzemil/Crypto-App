@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import PartOfList from "./PartOfList";
-import FilterList from "./FilterList";
-import SearchCrypto from "./SearchCrypto";
+import PartOfList from "../list/PartOfList";
+import FilterList from '../list/FilterList';
+import SearchCrypto from '../list/SearchCrypto';
+import RenderingData from '../list/RenderingData';
 import SearchContext from "../../store/SearchContext";
-import RenderingData from "./RenderingData";
 
 import {
   topGainers,

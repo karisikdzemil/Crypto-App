@@ -1,6 +1,6 @@
 export default function BuyContainer({data, changeTransaction, isBuy}) {
     console.log(isBuy)
-    const isBuyClass = ' border-b-2 border-[#F0B90B] bg-[#0B0E11]';
+    const isBuyClass = ' border-b-2 border-[#F0B90B] bg-[#1A1C22]';
   return (
     <div className='sm:w-9/12 w-full min-w-70 max-w-96 h-[55vh] rounded-lg bg-[#1E2329] flex flex-col items-center'>
       <div className="w-full h-17 flex items-center justify-center">
@@ -12,12 +12,12 @@ export default function BuyContainer({data, changeTransaction, isBuy}) {
         </button>
       </div>
       <div className="w-full h-60 flex flex-col gap-5 items-center justify-center">
-        <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-[#0B0E11] ">
+        <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-[#1A1C22] ">
           <h2 className="absolute top-1 left-5 font-bold text-white">Buy</h2>
           <input
             type="number"
             placeholder="Enter Amount"
-            className="w-9/12 h-10 bg-[#0B0E11] rounded-md p-5 text-white text-xl"
+            className="w-9/12 h-10 bg-[#1A1C22] rounded-md p-5 text-white text-xl"
           />
           {!isBuy ? <select className="text-white font-bold" name="" id="">
                 {data.data.map(el => (
@@ -26,14 +26,14 @@ export default function BuyContainer({data, changeTransaction, isBuy}) {
           </select> : <span className="text-white font-bold">CASH</span>}
         </div>
 
-        <div className="w-10/12 h-20 flex justify-between items-center p-3 rounded-md relative bg-[#0B0E11] ">
+        <div className="w-10/12 h-20 flex justify-between items-center p-3 rounded-md relative bg-[#1A1C22] ">
           <h2 className="absolute top-1 left-5 font-bold text-white">
             Receive
           </h2>
           <input
             type="number"
             placeholder="0.00"
-            className="w-9/12 h-10 bg-[#0B0E11] rounded-md p-5 text-white"
+            className="w-9/12 h-10 bg-[#1A1C22] rounded-md p-5 text-white"
           />
           {/* <span className="text-white font-bold">BTC</span> */}
          {isBuy ? <select className="text-white font-bold" name="" id="">

@@ -1,15 +1,41 @@
-import Header from "./components/UI/Header";
-import Footer from "./components/UI/Footer";
+import { useState, useEffect } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./components/pages/Home";
 import { SearchContextProvider } from "./store/SearchContext";
-import MainContent from "./components/MainContent";
+import List from "./components/pages/List";
+import BuyCrypto from "./components/pages/BuyCrypto";
+import RootLayout from "./components/pages/RootLayout";
 
 function App() {
+      const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
+      const [data, setData] = useState([]);
+  
+  useEffect(() => {
+      fetch('/api/v1/cryptocurrency/listings/latest', {
+          method: 'GET',
+          headers: {
+              'X-CMC_PRO_API_KEY': coinCapKey
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          setData(data);
+      })
+      .catch(error => console.error("Greška prilikom fetchovanja:", error));
+  }, []);
+
+  const router = createBrowserRouter([
+    {path: '/', element: <RootLayout />, children: [
+      {index: true, element: <Home data={data}/>},
+      {path: '/list', element: <List data={data}/>},
+      {path: '/buy', element: <BuyCrypto data={data} buyOrSell={true}/>},
+      {path: '/sell', element: <BuyCrypto data={data} buyOrSell={false}/>},
+    ]}
+  ])
    
   return (
     <SearchContextProvider>
-      <Header/>
-      <MainContent />
-      <Footer />
+        <RouterProvider router={router}/>
     </SearchContextProvider>
   )
 }

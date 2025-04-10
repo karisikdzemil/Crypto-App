@@ -1,12 +1,12 @@
 import PartOfList from "../list/PartOfList";
-import BuyCart from "./BuyCart";
-import BuyContainer from "./BuyContainer";
+import BuyCart from "../buyCrypto/BuyCart";
+import BuyContainer from "../buyCrypto/BuyContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyCheckDollar, faMoneyBillTrendUp, faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-export default function BuyCrypto({ data }) {
-    const [isBuy, setIsBuy] = useState(true);
+export default function BuyCrypto({ data, buyOrSell }) {
+    const [isBuy, setIsBuy] = useState(buyOrSell);
 
     function changeTransaction (arg) {
         setIsBuy(arg)
