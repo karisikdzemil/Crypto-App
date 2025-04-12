@@ -1,21 +1,23 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// src/firebase.js
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Importuješ samo ono što ti treba
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+// Konfiguracija sa Firebase konzole
 const firebaseConfig = {
   apiKey: "AIzaSyBMPSTyjQsx_bLBC13z274h1rz9wIIiGps",
   authDomain: "crypto-app-424aa.firebaseapp.com",
   projectId: "crypto-app-424aa",
-  storageBucket: "crypto-app-424aa.firebasestorage.app",
+  storageBucket: "crypto-app-424aa.appspot.com",
   messagingSenderId: "474198297056",
   appId: "1:474198297056:web:460b37437b7381ec32c385",
-  measurementId: "G-5XZ77VBJ8K"
 };
 
-// Initialize Firebase
+// Inicijalizacija Firebase-a
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Exportuj servise koje ćeš koristiti
+export const auth = getAuth(app);
+export const db = getFirestore(app);
