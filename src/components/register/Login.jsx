@@ -27,7 +27,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition"
+          className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition cursor-pointer"
         >
           Login
         </button>
