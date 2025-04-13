@@ -47,7 +47,7 @@ export default function List({ data }) {
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex flex-col items-center gap-10 p-5 md:p-10">
       <div className="w-full h-10 p-3 flex items-center justify-between">
-        <p className="font-bold text-[#F0B90B] w-40 ">Home  > List ></p>
+        <p className="font-bold text-[#F0B90B] w-40 ">Home  > List</p>
         <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
                 Balance: {balance}$
               </h1>
