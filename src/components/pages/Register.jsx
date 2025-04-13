@@ -67,7 +67,7 @@ export async function action({ request }) {
                 })
             }
             console.log('User registered successfuly')
-            redirect('/')
+            return redirect('/')
         }else{
             console.log('Passwords do not match.');
         }
@@ -80,7 +80,7 @@ export async function action({ request }) {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             console.log('Login successfuly!!!')
-            redirect('/list')
+            return redirect('/')
         } catch (error) {
             console.log(error);
             

@@ -79,11 +79,7 @@ export default function Header() {
        {!userCtx.isUserData ? <li>
           <NavLink
             to="/register?/login"
-            className={({ isActive }) =>
-              `text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer bg-[#F0B90B] ${
-                isActive ? "border-b-2 border-amber-400" : ""
-              }`
-            }
+            className='text-black text-lg font-semibold px-4 py-2 hover:bg-[#FCD535] rounded-md cursor-pointer bg-[#F0B90B]'
           >
             Login
           </NavLink>

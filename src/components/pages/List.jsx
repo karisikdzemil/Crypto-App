@@ -4,6 +4,7 @@ import FilterList from '../list/FilterList';
 import SearchCrypto from '../list/SearchCrypto';
 import RenderingData from '../list/RenderingData';
 import SearchContext from "../../store/SearchContext";
+import { AuthContext } from "../../store/AuthContext";
 
 import {
   topGainers,
@@ -15,6 +16,7 @@ import {
 export default function List({ data }) {
   const [activeBtn, setActiveBtn] = useState("All");
   const searchCtx = useContext(SearchContext);
+  const userCtx = useContext(AuthContext);
 
   let filteredData = [];
   function changeActiveBtn(btnName) {
@@ -37,8 +39,19 @@ export default function List({ data }) {
     filteredData = topMarketCap(data, 20);
   }
 
+    let balance = "******* ";
+    if (userCtx.isUserData) {
+      balance = userCtx.userData.balance;
+    }
+
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex flex-col items-center gap-10 p-5 md:p-10">
+      <div className="w-full h-10 p-3 flex items-center justify-between">
+        <p className="font-bold text-[#F0B90B] w-40 ">Home  > List ></p>
+        <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
+                Balance: {balance}$
+              </h1>
+      </div>
       <h1 className="text-4xl mt-5 text-white w-90 text-center font-bold">
         {" "}
         <span className="text-[#F0B90B]">MARKET</span> OVERVIEW{" "}

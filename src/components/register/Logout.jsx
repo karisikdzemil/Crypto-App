@@ -13,7 +13,7 @@ export default function Logout() {
   };
 
   return (
-    <button onClick={handleLogout} className="text-red-500">
+    <button onClick={handleLogout} className='text-black text-lg font-semibold px-4 py-2 hover:bg-[#FCD535] rounded-md cursor-pointer bg-[#F0B90B]'>
       Logout
     </button>
   );

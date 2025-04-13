@@ -3,10 +3,12 @@ import BuyCart from "../buyCrypto/BuyCart";
 import BuyContainer from "../buyCrypto/BuyContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyCheckDollar, faMoneyBillTrendUp, faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../store/AuthContext";
 
 export default function BuyCrypto({ data, buyOrSell }) {
     const [isBuy, setIsBuy] = useState(buyOrSell);
+      const userCtx = useContext(AuthContext);
 
     function changeTransaction (arg) {
         setIsBuy(arg)
@@ -15,8 +17,18 @@ export default function BuyCrypto({ data, buyOrSell }) {
   if (!data || !data.data || data.data.length === 0) {
     return <p>Loading... </p>;
   }
+  let balance = "******* ";
+    if (userCtx.isUserData) {
+      balance = userCtx.userData.balance;
+    }
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] xs:p-10">
+      <div className="sm:w-11/12 w-full m-auto p-10 h-10 flex items-center justify-between">
+        <p className="font-bold sm:text-base text-xs text-[#F0B90B] w-60">Home  > List > Buy/Sell</p>
+        <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
+                Balance: {balance}$
+              </h1>
+      </div>
       <div className="w-full min-h-[30vh] flex flex-wrap-reverse items-center justify-center">
         <div className="md:w-3/5 w-full min-h-[30vh] py-5 my-10 flex flex-col items-center justify-center ">
 

@@ -25,7 +25,7 @@ export default function Home({ data }) {
             Welcome to <span className="text-[#F0B90B]">Crypto</span>, a site
             for tracking and buying cryptocurrencies!
           </h1>
-          <button className="bg-[#FCD535] w-1/2 h-12 text-white rounded-md text-xl font-bold cursor-pointer hover:bg-[#F0B90B]">
+          <button className="bg-[#F0B90B] w-1/2 h-12 text-black rounded-md text-xl font-bold cursor-pointer hover:bg-[#FCD535]">
             Invest
           </button>
           <div className=" w-full h-30 flex flex-col items-left p-3 justify-center gap-5">
