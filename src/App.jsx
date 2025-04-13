@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/pages/Home";
 import { SearchContextProvider } from "./store/SearchContext";
+import { AuthContextProvider } from "./store/AuthContext";
 import List from "./components/pages/List";
 import BuyCrypto from "./components/pages/BuyCrypto";
 import RootLayout from "./components/pages/RootLayout";
@@ -38,7 +39,9 @@ function App() {
    
   return (
     <SearchContextProvider>
+      <AuthContextProvider>
         <RouterProvider router={router}/>
+        </AuthContextProvider>
     </SearchContextProvider>
   )
 }

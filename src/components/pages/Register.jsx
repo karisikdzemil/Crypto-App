@@ -1,8 +1,8 @@
 import Login from "../register/Login";
 import Singup from "../register/Singup";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, redirect } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 export default function Register() {
@@ -67,6 +67,7 @@ export async function action({ request }) {
                 })
             }
             console.log('User registered successfuly')
+            redirect('/')
         }else{
             console.log('Passwords do not match.');
         }
@@ -74,4 +75,15 @@ export async function action({ request }) {
             console.log(error);
         }
     }  
+
+    if(formType === 'login'){
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log('Login successfuly!!!')
+            redirect('/list')
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 }

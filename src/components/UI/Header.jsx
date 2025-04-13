@@ -2,9 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import HambMenu from "./HambMenu";
-import { useState } from "react";
+import Logout from "../register/Logout";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../store/AuthContext";
 export default function Header() {
   const [hambMenu, setHambMenu] = useState(false);
+  const userCtx = useContext(AuthContext);
 
   function hambMenuHandler() {
     setHambMenu(prevMenu => !prevMenu);
@@ -73,7 +76,7 @@ export default function Header() {
             Contact
           </NavLink>
         </li>
-        <li>
+       {!userCtx.isUserData ? <li>
           <NavLink
             to="/register?/login"
             className={({ isActive }) =>
@@ -84,7 +87,7 @@ export default function Header() {
           >
             Login
           </NavLink>
-        </li>
+        </li>: <Logout />}
       </ul>
     </header>
   );
