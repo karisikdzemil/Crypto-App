@@ -1,6 +1,26 @@
+import { useRef, useState } from "react";
 export default function BuyContainer({data, changeTransaction, isBuy}) {
-    console.log(isBuy)
+  const [selectedEl, setSelectedEl] = useState(data.data[0]);
+
+  const enterInput = useRef();
+  const receiveInput = useRef();
+
     const isBuyClass = ' border-b-2 border-[#F0B90B] bg-[#1A1C22]';
+
+    function calculateTransactionHandler (event) {
+      if(isBuy){
+        receiveInput.current.value = (+event.target.value / selectedEl.quote.USD.price).toFixed(5);
+      }
+      // if(!isBuy){
+      //   enterInput.current.value = (+event.target.value / selectedEl.quote.USD.price).toFixed(5);
+      // }
+    }
+
+    function changeHandler (e) {
+      const parsed = JSON.parse(e.target.value);
+      setSelectedEl(parsed);
+      console.log('selected el', selectedEl)
+    }
   return (
     <div className='sm:w-9/12 w-full min-w-70 max-w-96 h-[55vh] rounded-lg bg-[#1E2329] flex flex-col items-center'>
       <div className="w-full h-17 flex items-center justify-center">
@@ -15,13 +35,15 @@ export default function BuyContainer({data, changeTransaction, isBuy}) {
         <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-[#1A1C22] ">
           <h2 className="absolute top-1 left-5 font-bold text-white">Buy</h2>
           <input
+          onChange={calculateTransactionHandler}
             type="number"
             placeholder="Enter Amount"
             className="w-9/12 h-10 bg-[#1A1C22] rounded-md p-5 text-white text-xl"
+            ref={enterInput}
           />
-          {!isBuy ? <select className="text-white font-bold" name="" id="">
+          {!isBuy ? <select className="text-white font-bold" name="" id="" onChange={changeHandler}>
                 {data.data.map(el => (
-                    <option key={el.id} value="">{el.symbol}</option>
+                    <option key={el.id} value={JSON.stringify(el)}>{el.symbol}</option>
                 )).slice(0, 20)}
           </select> : <span className="text-white font-bold">CASH</span>}
         </div>
@@ -31,14 +53,16 @@ export default function BuyContainer({data, changeTransaction, isBuy}) {
             Receive
           </h2>
           <input
+            onChange={calculateTransactionHandler}
             type="number"
             placeholder="0.00"
             className="w-9/12 h-10 bg-[#1A1C22] rounded-md p-5 text-white"
+            ref={receiveInput}
           />
           {/* <span className="text-white font-bold">BTC</span> */}
-         {isBuy ? <select className="text-white font-bold" name="" id="">
+         {isBuy ? <select className="text-white font-bold" name="" id="" onChange={changeHandler}>
                 {data.data.map(el => (
-                    <option key={el.id} value="">{el.symbol}</option>
+                    <option key={el.id} value={JSON.stringify(el)}>{el.symbol}</option>
                 )).slice(0, 20)}
           </select> : <span className="text-white font-bold">CASH</span>}
         </div>

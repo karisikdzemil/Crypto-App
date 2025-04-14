@@ -24,7 +24,7 @@ export default function BuyCrypto({ data, buyOrSell }) {
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] xs:p-10">
       <div className="sm:w-11/12 w-full m-auto p-10 h-10 flex items-center justify-between">
-        <p className="font-bold sm:text-base text-xs text-[#F0B90B] w-60">Home  > List > Buy/Sell</p>
+        <p className="font-bold sm:text-base text-xs text-[#F0B90B] w-60">{'Home  > List > Buy/Sell'}</p> 
         <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
                 Balance: {balance}$
               </h1>

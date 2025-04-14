@@ -7,8 +7,8 @@ import List from "./components/pages/List";
 import BuyCrypto from "./components/pages/BuyCrypto";
 import RootLayout from "./components/pages/RootLayout";
 import CryptoInfo from "./components/pages/CrytpoInfo";
-import Register, {action as registerUserAction} from "./components/pages/Register";
 import Wallet from "./components/pages/Wallet";
+import Register, {action as registerUserAction} from "./components/pages/Register";
 
 function App() {
       const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
@@ -33,7 +33,8 @@ function App() {
       {index: true, element: <Home data={data}/>},
       {path: '/list', element: <List data={data}/>},
       {path: '/buy-sell', element: <BuyCrypto data={data} buyOrSell={true}/>},
-      {path: '/wallet', element: <Wallet data={data}/>},
+      {path: '/crypto-info', element: <CryptoInfo data={data}/>},
+      {path: '/wallet', element: <Wallet/>},
       {path: '/register', element: <Register />, action: registerUserAction}
     ]}
   ])
