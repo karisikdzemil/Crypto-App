@@ -94,7 +94,9 @@ export function AuthContextProvider({ children }) {
         balance: newBalance,
         currencies: arrayUnion(newCurrency)
       });
-  
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      setUserData(docSnap.data())
       console.log("Transaction successfully recorded!");
     } catch (err) {
       console.error("Transaction error:", err.message);
