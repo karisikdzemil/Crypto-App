@@ -11,6 +11,7 @@ export default function Home({ data }) {
   if (userCtx.isUserData) {
     email = userCtx.userData.email;
     balance = userCtx.userData.balance;
+    console.log(userCtx.userData)
   }
   if (!data || !data.data || data.data.length === 0) {
     return <p>Loading...</p>; //Here will show Message/>

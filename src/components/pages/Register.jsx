@@ -59,7 +59,7 @@ export async function action({ request }) {
             const user = auth.currentUser;
             console.log(user);
             if(user){
-                await setDoc(doc(db, 'Users', user.uid), {
+                await setDoc(doc(db, 'users', user.uid), {
                     email: user.email,
                     balance: 100000,
                     currencies: []

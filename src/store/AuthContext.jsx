@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../components/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export const AuthContext = createContext({
   user: null,
   userData: null,
   isUserData: false,
   logout: () => {},
+  recordTransaction: () => {}
 });
 
 export function AuthContextProvider({ children }) {
@@ -22,7 +23,7 @@ export function AuthContextProvider({ children }) {
         setUser(user);
 
         try {
-          const docRef = doc(db, "Users", user.uid);
+          const docRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
@@ -60,11 +61,53 @@ export function AuthContextProvider({ children }) {
     });
   }
 
+  async function recordTransaction({ uid, isBuy, coin, amountUSD, amountCoin }) {
+    const userRef = doc(db, "users", uid);
+    try {
+      const userSnap = await getDoc(userRef);
+  
+      if (!userSnap.exists()) {
+        throw new Error("User not found!");
+      }
+  
+      const userData = userSnap.data();
+      let newBalance = userData.balance;
+  
+      if (isBuy) {
+        if (amountUSD > newBalance) throw new Error("Not enough balance.");
+        newBalance -= amountUSD;
+      } else {
+        newBalance += amountUSD;
+      }
+  
+      const newCurrency = {
+        type: isBuy ? "BUY" : "SELL",
+        coinId: coin.id,
+        symbol: coin.symbol,
+        pricePerCoin: coin.quote.USD.price,
+        amountUSD: +amountUSD.toFixed(2),
+        amountCoin: +amountCoin.toFixed(5),
+        timestamp: new Date().toISOString()
+      };
+  
+      await updateDoc(userRef, {
+        balance: newBalance,
+        currencies: arrayUnion(newCurrency)
+      });
+  
+      console.log("Transaction successfully recorded!");
+    } catch (err) {
+      console.error("Transaction error:", err.message);
+    }
+  }
+  
+
   const authContext = {
     user,
     userData,
     isUserData,
-    logout
+    logout,
+    recordTransaction
   };
 
   return <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>;
