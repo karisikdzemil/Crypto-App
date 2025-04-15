@@ -76,6 +76,18 @@ export default function Header() {
             Wallet
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer ${
+                isActive ? "border-b-2 border-amber-400" : ""
+              }`
+            }
+          >
+            Contact
+          </NavLink>
+        </li>
        {!userCtx.isUserData ? <li>
           <NavLink
             to="/register?/login"

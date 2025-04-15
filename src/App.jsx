@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/pages/Home";
 import List from "./components/pages/List";
@@ -8,10 +8,10 @@ import CryptoInfo from "./components/pages/CrytpoInfo";
 import Wallet from "./components/pages/Wallet";
 import Register, {action as registerUserAction} from "./components/pages/Register";
 import SearchContext from "./store/SearchContext";
+import Contact from "./components/pages/Contact";
 
 function App() {
       const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
-      const [data, setData] = useState([]);
       const searchCtx = useContext(SearchContext);
 
   useEffect(() => {
@@ -23,7 +23,6 @@ function App() {
       })
       .then(response => response.json())
       .then(data => {
-          setData(data);
           searchCtx.loadCryptoData(data);
       })
       .catch(error => console.error("Greška prilikom fetchovanja:", error));
@@ -34,9 +33,10 @@ function App() {
       {index: true, element: <Home/>},
       {path: '/list', element: <List/>},
       {path: '/buy-sell', element: <BuyCrypto buyOrSell={true}/>},
-      {path: '/crypto-info', element: <CryptoInfo data={data}/>},
+      {path: '/crypto-info', element: <CryptoInfo/>},
       {path: '/wallet', element: <Wallet/>},
-      {path: '/register', element: <Register />, action: registerUserAction}
+      {path: '/register', element: <Register />, action: registerUserAction},
+      {path: '/contact', element: <Contact/>},
     ]}
   ])
    

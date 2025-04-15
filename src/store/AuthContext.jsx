@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../components/firebase";
 import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
@@ -15,11 +15,20 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isUserData, setIsUserData] = useState(false);
+  const logoutTimerRef = useRef(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log("Logged in user:", user.email, user.uid);
+
+        if (logoutTimerRef.current) {
+          clearTimeout(logoutTimerRef.current);
+        }
+        
+        logoutTimerRef.current = setTimeout(() => {
+          logout(); 
+          console.log("Auto-logout after 60 minutes of session");
+        }, 60 * 60 * 1000); 
         setUser(user);
 
         try {
@@ -51,6 +60,10 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   function logout () {  
+    if (logoutTimerRef.current) {
+      clearTimeout(logoutTimerRef.current);
+    }
+    
     signOut(auth)
     .then(() => {
       console.log("User signed out");

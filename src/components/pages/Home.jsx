@@ -3,23 +3,28 @@ import HomeDisplayImg from "../home/HomeDisplayImg";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const userCtx = useContext(AuthContext);
-  const searchCtx = useContext(SearchContext)
+  const searchCtx = useContext(SearchContext);
 
   let email = "****@*********";
   let balance = "******* ";
   if (userCtx.isUserData) {
     email = userCtx.userData.email;
     balance = userCtx.userData.balance;
-    console.log(userCtx.userData)
+    console.log(userCtx.userData);
   }
 
-  if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
+  if (
+    !searchCtx.cryptoData ||
+    !searchCtx.cryptoData.data ||
+    searchCtx.cryptoData.data.length === 0
+  ) {
     return <p>Loading...</p>; //Here will show Message/>
   }
-
 
   return (
     <>
@@ -33,21 +38,35 @@ export default function Home() {
           <button className="bg-[#F0B90B] w-1/2 h-12 text-black rounded-md text-xl font-bold cursor-pointer hover:bg-[#FCD535]">
             Invest
           </button>
-          <div className=" w-full h-30 flex flex-col items-left p-3 justify-center gap-5">
-
-              <h1 className="text-left text-white font-bold sm:text-base text-xs w-full">{email}</h1>
-              <h1 className="text-left text-white font-bold w-full sm:text-base text-xs">
-                Balance: {balance}$
-              </h1>
-            
+          <div className="w-1/2 bg-[#2A2D38] p-4 rounded-xl shadow-md text-white flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+            <FontAwesomeIcon icon={faCircleUser} />
+              <p className="text-sm sm:text-base font-medium break-words">
+                {email}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <img
+                src="https://img.icons8.com/ios-filled/50/f0b90b/money.png"
+                alt="Balance Icon"
+                className="w-6 h-6"
+              />
+              <p className="text-sm sm:text-base font-semibold text-[#F0B90B]">
+                Balance: ${balance}
+              </p>
+            </div>
           </div>
+
           <img
             className="w-20 md:w-50"
             src="icons8-crypto-wallet-64.png"
             alt=""
           />
         </div>
-        <PartOfList title="Most popular cryptocurency" data={searchCtx.cryptoData.data} />
+        <PartOfList
+          title="Most popular cryptocurency"
+          data={searchCtx.cryptoData.data}
+        />
       </section>
       <HomeDisplayImg />
     </>
