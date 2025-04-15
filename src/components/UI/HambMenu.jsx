@@ -1,7 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faHouse, faListUl, faCartShopping, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faHouse, faListUl, faCartShopping, faPhone, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../store/AuthContext";
+import Logout from "../register/Logout";
 export default function HambMenu({ hambMenuHandler }) {
+  const userCtx = useContext(AuthContext);
   return (
     <div className="fixed top-0 left-0 w-full h-full z-40">
   <div
@@ -67,7 +71,20 @@ export default function HambMenu({ hambMenuHandler }) {
         </li>
         <li onClick={() => hambMenuHandler()}>
           <NavLink
-            to="/sell"
+            to="/wallet"
+            className={({ isActive }) =>
+              `text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer ${
+                isActive ? "border-b-2 border-amber-400" : ""
+              }`
+            }
+          >
+            <FontAwesomeIcon className="mr-2" icon={faWallet} />
+            Wallet
+          </NavLink>
+        </li>
+        <li onClick={() => hambMenuHandler()}>
+          <NavLink
+            to="/contact"
             className={({ isActive }) =>
               `text-white text-lg font-semibold px-4 py-2 hover:bg-gray-800 rounded-md cursor-pointer ${
                 isActive ? "border-b-2 border-amber-400" : ""
@@ -78,6 +95,14 @@ export default function HambMenu({ hambMenuHandler }) {
             Contact
           </NavLink>
         </li>
+         {!userCtx.isUserData ? <li>
+                  <NavLink
+                    to="/register?/login"
+                    className='text-black text-lg font-semibold px-4 py-2 hover:bg-[#FCD535] rounded-md cursor-pointer bg-[#F0B90B]'
+                  >
+                    Login
+                  </NavLink>
+                </li>: <Logout />}
       </ul>
   </div>
 </div>

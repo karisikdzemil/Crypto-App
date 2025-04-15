@@ -8,13 +8,16 @@ export const AuthContext = createContext({
   userData: null,
   isUserData: false,
   logout: () => {},
-  recordTransaction: () => {}
+  recordTransaction: () => {},
+  toastSetter: () => {},
+  toast: false,
 });
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isUserData, setIsUserData] = useState(false);
+  const [toast, setToast] = useState(false);
   const logoutTimerRef = useRef(null);
 
   useEffect(() => {
@@ -92,7 +95,6 @@ export function AuthContextProvider({ children }) {
         if (amountUSD > newBalance) throw new Error("Not enough balance.");
         newBalance -= amountUSD;
       } else {
-        // PROVERA DA LI POSTOJI COIN
         const existingCoin = userCoins.find(
           (c) => c.symbol === coin.symbol && c.type === "BUY"
         );
@@ -101,7 +103,6 @@ export function AuthContextProvider({ children }) {
           throw new Error("You don't own this coin.");
         }
   
-        // PROVERA DA LI IMA DOVOLJNO COINA
         let totalOwned = userCoins
           .filter((c) => c.symbol === coin.symbol)
           .reduce((acc, c) => {
@@ -135,9 +136,14 @@ export function AuthContextProvider({ children }) {
       const docSnap = await getDoc(userRef);
       setUserData(docSnap.data());
       console.log("Transaction successfully recorded!");
+      setToast(true);
     } catch (err) {
       console.error("Transaction error:", err.message);
     }
+  }
+
+  function toastSetter (arg) {
+    setToast(arg)
   }
   
 
@@ -146,7 +152,9 @@ export function AuthContextProvider({ children }) {
     userData,
     isUserData,
     logout,
-    recordTransaction
+    recordTransaction,
+    toastSetter,
+    toast
   };
 
   return <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>;

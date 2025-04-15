@@ -63,10 +63,10 @@ export async function action({ request }) {
                     email: user.email,
                     balance: 100000,
                     currencies: []
-
                 })
             }
             console.log('User registered successfuly')
+            
             return redirect('/')
         }else{
             console.log('Passwords do not match.');

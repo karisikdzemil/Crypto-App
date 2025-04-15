@@ -25,6 +25,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
           searchCtx.loadCryptoData(data);
+          console.log(data)
           searchCtx.loadingDataSetter(false);
       })
       .catch(error => console.error("Greška prilikom fetchovanja:", error));

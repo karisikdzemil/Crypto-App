@@ -8,7 +8,6 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
   const authCtx = useContext(AuthContext);
   const searchCtx = useContext(SearchContext);
   const [selectedEl, setSelectedEl] = useState(searchCtx.cryptoData.data[0]);
-  const [showToast, setShowToast] = useState(false);
 
   const enterInput = useRef();
   const receiveInput = useRef();
@@ -41,14 +40,19 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
     const received = +receiveInput.current.value;
   
     if (entered > 0 && received > 0) {
-      await authCtx.recordTransaction({
+      try{
+         await authCtx.recordTransaction({
         uid: auth.currentUser.uid,
         isBuy,
         coin: selectedEl,
         amountUSD: isBuy ? entered : received,    
         amountCoin: isBuy ? received : entered   
       });
-      setShowToast(true);
+
+      }catch(error){
+        console.log(error)
+      }
+     
     } else {
       notAccount = 'Enter a valid amount';
       console.log('Invalid input');
@@ -67,7 +71,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
 
   return (
     <div className="sm:w-9/12 w-full min-w-70 max-w-96 h-[55vh] rounded-lg bg-[#1E2329] flex flex-col items-center">
-      {showToast && <Toast message='Vala da probam' duration={2000} onClose={() => setShowToast(false)} />} 
+      {authCtx.toast && <Toast message='Transaction completed' duration={2000} onClose={() => authCtx.toastSetter(false)} />} 
       <div className="w-full h-17 flex items-center justify-center">
         <button
           onClick={() => changeTransaction(true)}
