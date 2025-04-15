@@ -3,6 +3,8 @@ import { createContext, useState } from "react";
 const SearchContext = createContext({
     cryptoData: null,
     loadCryptoData: () => {},
+    loadingDataSetter: () => {},
+    isLoadingData: false,
     isActive: false,
     foundedCryptos: [],
     favorites: [],
@@ -15,12 +17,18 @@ const SearchContext = createContext({
 export function SearchContextProvider ({children}){
     const [cryptoData, setCryptoData] = useState([]);
     const [isActive, setIsActive] = useState(false);
+    const [isLoadingData, setIsLoadingData] = useState(false);
     const [foundedCryptos, setFoundedCryptos] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [cryptoInformation, setCryptoInformation] = useState({});
 
+
     function loadCryptoData (cryptos) {
         setCryptoData(cryptos)
+    }
+
+    function loadingDataSetter (value) {
+        setIsLoadingData(value);
     }
     
 
@@ -49,16 +57,19 @@ export function SearchContextProvider ({children}){
     const searchContext = {
         cryptoData,
         loadCryptoData,
+        loadingDataSetter,
+        isLoadingData,
         isActive,
         foundedCryptos,
         searchForCryptos,
         addToFavorites,
         favorites,
         cryptoInformation,
-        getCryptoInfo
+        getCryptoInfo,
     }
 
     return <SearchContext.Provider value={searchContext}>{children}</SearchContext.Provider>
 }
 
 export default SearchContext
+  

@@ -1,4 +1,5 @@
 import PartOfList from "../list/PartOfList";
+import Loading from '../UI/Loading';
 import HomeDisplayImg from "../home/HomeDisplayImg";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
@@ -18,19 +19,19 @@ export default function Home() {
     console.log(userCtx.userData);
   }
 
-  if (
-    !searchCtx.cryptoData ||
-    !searchCtx.cryptoData.data ||
-    searchCtx.cryptoData.data.length === 0
-  ) {
-    return <p>Loading...</p>; //Here will show Message/>
-  }
+  // if (
+  //   !searchCtx.cryptoData ||
+  //   !searchCtx.cryptoData.data ||
+  //   searchCtx.cryptoData.data.length === 0
+  // ) {
+  //   return ;
+  // }
 
   return (
     <>
       {" "}
       <section className="w-full min-h-[90vh] bg-[#1A1C22ff] p-10 flex items-center gap-5 flex-col sm:flex-row">
-        <div className=" w-6/12 h-4/5 flex flex-col items-center text-center justify-evenly gap-5 xs:w-5/12">
+        <div className=" w-full h-4/5 flex flex-col items-center text-center justify-evenly gap-5 sm:w-7/12">
           <h1 className="text-xl font-extrabold text-white md:text-5xl w-full">
             Welcome to <span className="text-[#F0B90B]">Crypto</span>, a site
             for tracking and buying cryptocurrencies!
@@ -38,7 +39,7 @@ export default function Home() {
           <button className="bg-[#F0B90B] w-1/2 h-12 text-black rounded-md text-xl font-bold cursor-pointer hover:bg-[#FCD535]">
             Invest
           </button>
-          <div className="w-1/2 bg-[#2A2D38] p-4 rounded-xl shadow-md text-white flex flex-col gap-3">
+          <div className="md:w-1/2 w-full bg-[#2A2D38] p-4 rounded-xl shadow-md text-white flex flex-col gap-3">
             <div className="flex items-center gap-3">
             <FontAwesomeIcon icon={faCircleUser} />
               <p className="text-sm sm:text-base font-medium break-words">
@@ -63,10 +64,10 @@ export default function Home() {
             alt=""
           />
         </div>
-        <PartOfList
+       {searchCtx.isLoadingData ? <Loading /> : <PartOfList
           title="Most popular cryptocurency"
           data={searchCtx.cryptoData.data}
-        />
+        />}
       </section>
       <HomeDisplayImg />
     </>

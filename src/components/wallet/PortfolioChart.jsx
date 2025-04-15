@@ -38,7 +38,9 @@ export default function PortfolioChart() {
               outerRadius={80}
               fill="#8884d8"
               dataKey="value"
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              label={({ name, percent }) => (
+                <span>{`${name} ${(percent * 100).toFixed(0)}%`}</span> // ispravljeno
+              )}
             >
               {chartData.map((entry, index) => (
                 <Cell

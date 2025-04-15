@@ -12,6 +12,7 @@ import {
   topMarketCap,
   topVolume,
 } from "../../util/formatter";
+import Loading from "../UI/Loading";
 
 export default function List() {
   const [activeBtn, setActiveBtn] = useState("All");
@@ -24,7 +25,7 @@ export default function List() {
   }
 
   if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
-    return <p>Loading... </p>;
+    return <div className="w-full h-[90vh] bg-[#1A1C22ff] flex items-center justify-center"><Loading /></div>;
   }
 
   if (activeBtn === "All") {

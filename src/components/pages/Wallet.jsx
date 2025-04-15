@@ -1,12 +1,12 @@
 import PortfolioChart from "../wallet/PortfolioChart";
 import RecentTransactions from "../wallet/RecentTransactions";
 import WalletInfo from "../wallet/WalletInfo";
-import { topMarketCap } from "../../util/formatter";
-import { useContext } from "react";
+// import { topMarketCap } from "../../util/formatter";
+// import { useContext } from "react";
 import SearchContext from "../../store/SearchContext";
 
 export default function Wallet() {
-  const searchCtx = useContext(SearchContext);
+  // const searchCtx = useContext(SearchContext);
 
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] flex items-start gap-10 p-5 md:p-10 sm:flex-row flex-col">

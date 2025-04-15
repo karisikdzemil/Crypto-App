@@ -2,11 +2,13 @@ import { useRef, useState, useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import { auth } from "../firebase";
 import SearchContext from "../../store/SearchContext";
+import Toast from "../UI/Toast";
 
 export default function BuyContainer({ changeTransaction, isBuy }) {
   const authCtx = useContext(AuthContext);
   const searchCtx = useContext(SearchContext);
   const [selectedEl, setSelectedEl] = useState(searchCtx.cryptoData.data[0]);
+  const [showToast, setShowToast] = useState(false);
 
   const enterInput = useRef();
   const receiveInput = useRef();
@@ -29,22 +31,27 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
 
   let notAccount = '';
 
-  async function transactionHandler (){
-    if(!authCtx.user){
-       notAccount = 'You must logged in!';
+  async function transactionHandler() {
+    if (!authCtx.user) {
+      notAccount = 'You must be logged in!';
       return;
     }
-    if(enterInput.current.value !== '' && +enterInput.current.value > 0){
-      await authCtx.recordTransaction( {
+  
+    const entered = +enterInput.current.value;
+    const received = +receiveInput.current.value;
+  
+    if (entered > 0 && received > 0) {
+      await authCtx.recordTransaction({
         uid: auth.currentUser.uid,
         isBuy,
         coin: selectedEl,
-        amountUSD: +enterInput.current.value, 
-        amountCoin: +receiveInput.current.value
-      } );
-    }else{
-      notAccount = 'enter some value'
-      console.log('not value entered')
+        amountUSD: isBuy ? entered : received,    
+        amountCoin: isBuy ? received : entered   
+      });
+      setShowToast(true);
+    } else {
+      notAccount = 'Enter a valid amount';
+      console.log('Invalid input');
     }
   }
   
@@ -60,6 +67,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
 
   return (
     <div className="sm:w-9/12 w-full min-w-70 max-w-96 h-[55vh] rounded-lg bg-[#1E2329] flex flex-col items-center">
+      {showToast && <Toast message='Vala da probam' duration={2000} onClose={() => setShowToast(false)} />} 
       <div className="w-full h-17 flex items-center justify-center">
         <button
           onClick={() => changeTransaction(true)}
@@ -80,7 +88,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
       </div>
 
       <div className="w-full h-60 flex flex-col gap-5 items-center justify-center">
-        {/* Enter Amount */}
+
         <div className="w-10/12 h-25 flex justify-between items-center p-3 rounded-md relative bg-[#1A1C22]">
           <h2 className="absolute top-1 left-5 font-bold text-white">
             {isBuy ? "Buy" : "Sell"}
@@ -108,7 +116,6 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
           )}
         </div>
 
-        {/* Receive Amount */}
         <div className="w-10/12 h-20 flex justify-between items-center p-3 rounded-md relative bg-[#1A1C22]">
           <h2 className="absolute top-1 left-5 font-bold text-white">
             Receive

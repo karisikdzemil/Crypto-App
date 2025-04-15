@@ -6,6 +6,7 @@ import { faMoneyCheckDollar, faMoneyBillTrendUp, faHandHoldingDollar } from "@fo
 import { useState, useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
+import Loading from "../UI/Loading";
 
 export default function BuyCrypto({ buyOrSell }) {
     const [isBuy, setIsBuy] = useState(buyOrSell);
@@ -16,9 +17,9 @@ export default function BuyCrypto({ buyOrSell }) {
         setIsBuy(arg)
     }
 
-  if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
-    return <p>Loading... </p>;
-  }
+  // if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
+  //   return <p>Loading... </p>;
+  // }
   let balance = "******* ";
     if (userCtx.isUserData) {
       balance = userCtx.userData.balance;
@@ -39,7 +40,7 @@ export default function BuyCrypto({ buyOrSell }) {
 
         </div>
         <div className="md:w-2/5 sm:w-3/5 w-full md:p-10 p-5  flex items-end justify-center">
-            <BuyContainer changeTransaction={changeTransaction} isBuy={isBuy}/>
+            {!searchCtx.cryptoData.data ? <Loading /> : <BuyContainer changeTransaction={changeTransaction} isBuy={isBuy}/>}
         </div>  
       </div>
     <div className="w-full min-h-[45vh] flex flex-col py-10">

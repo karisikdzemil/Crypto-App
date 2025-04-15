@@ -15,6 +15,7 @@ function App() {
       const searchCtx = useContext(SearchContext);
 
   useEffect(() => {
+      searchCtx.loadingDataSetter(true);
       fetch('/api/v1/cryptocurrency/listings/latest', {
           method: 'GET',
           headers: {
@@ -24,6 +25,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
           searchCtx.loadCryptoData(data);
+          searchCtx.loadingDataSetter(false);
       })
       .catch(error => console.error("Greška prilikom fetchovanja:", error));
   }, []);

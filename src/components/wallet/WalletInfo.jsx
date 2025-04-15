@@ -3,13 +3,14 @@ import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
 import WalletAsset from "./WalletAsset";
 import { formatNumber } from "../../util/formatter";
+import Loading from "../UI/Loading";
 
 export default function WalletInfo() {
   const authCtx = useContext(AuthContext);
   const searchCtx = useContext(SearchContext);
 
   if (!authCtx.userData || !searchCtx.cryptoData) {
-    return <div className="text-white p-5">Loading wallet info...</div>;
+    return <div className="text-white p-5"><Loading /></div>;
   }
 
   function getUserAssets(currencies) {
@@ -38,7 +39,6 @@ export default function WalletInfo() {
 
   const assets = getUserAssets(authCtx.userData.currencies || []);
 
-  // ✅ Izračunaj total balance pre prikaza
   const totalBalance = assets.reduce((acc, asset) => {
     const crypto = searchCtx.cryptoData.data.find(
       (el) => el.symbol === asset.symbol
@@ -51,7 +51,6 @@ export default function WalletInfo() {
 
   return (
     <div className="w-full max-w-4xl bg-[#2A2D38] rounded-2xl p-6 shadow-lg flex flex-col gap-6 text-white">
-      {/* Header */}
       <div className="flex flex-col gap-1 border-b border-gray-600 pb-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold">My Wallet</h2>
@@ -62,7 +61,6 @@ export default function WalletInfo() {
         </p>
       </div>
 
-      {/* Balance */}
       <div className="flex flex-col items-center gap-2">
         <p className="text-gray-400 text-lg">Total Balance</p>
         <h3 className="text-4xl font-bold text-green-400">
@@ -70,7 +68,6 @@ export default function WalletInfo() {
         </h3>
       </div>
 
-      {/* Assets */}
       <div className="flex flex-col gap-3">
         <h4 className="text-lg font-medium border-b border-gray-600 pb-2">
           Your Assets

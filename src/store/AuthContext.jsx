@@ -86,14 +86,38 @@ export function AuthContextProvider({ children }) {
       const userData = userSnap.data();
       let newBalance = userData.balance;
   
+      const userCoins = userData.currencies || [];
+  
       if (isBuy) {
         if (amountUSD > newBalance) throw new Error("Not enough balance.");
         newBalance -= amountUSD;
       } else {
+        // PROVERA DA LI POSTOJI COIN
+        const existingCoin = userCoins.find(
+          (c) => c.symbol === coin.symbol && c.type === "BUY"
+        );
+  
+        if (!existingCoin) {
+          throw new Error("You don't own this coin.");
+        }
+  
+        // PROVERA DA LI IMA DOVOLJNO COINA
+        let totalOwned = userCoins
+          .filter((c) => c.symbol === coin.symbol)
+          .reduce((acc, c) => {
+            return c.type === "BUY"
+              ? acc + c.amountCoin
+              : acc - c.amountCoin;
+          }, 0);
+          console.log(amountCoin, totalOwned, userCoins)
+        if (amountCoin > totalOwned) {
+          throw new Error("Not enough coin to sell.");
+        }
+  
         newBalance += amountUSD;
       }
   
-      const newCurrency = {
+      const newTransaction = {
         type: isBuy ? "BUY" : "SELL",
         coinId: coin.id,
         symbol: coin.symbol,
@@ -105,11 +129,11 @@ export function AuthContextProvider({ children }) {
   
       await updateDoc(userRef, {
         balance: newBalance,
-        currencies: arrayUnion(newCurrency)
+        currencies: arrayUnion(newTransaction)
       });
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      setUserData(docSnap.data())
+  
+      const docSnap = await getDoc(userRef);
+      setUserData(docSnap.data());
       console.log("Transaction successfully recorded!");
     } catch (err) {
       console.error("Transaction error:", err.message);
