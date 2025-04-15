@@ -5,16 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyCheckDollar, faMoneyBillTrendUp, faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
+import SearchContext from "../../store/SearchContext";
 
-export default function BuyCrypto({ data, buyOrSell }) {
+export default function BuyCrypto({ buyOrSell }) {
     const [isBuy, setIsBuy] = useState(buyOrSell);
       const userCtx = useContext(AuthContext);
+      const searchCtx = useContext(SearchContext);
 
     function changeTransaction (arg) {
         setIsBuy(arg)
     }
 
-  if (!data || !data.data || data.data.length === 0) {
+  if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
     return <p>Loading... </p>;
   }
   let balance = "******* ";
@@ -33,11 +35,11 @@ export default function BuyCrypto({ data, buyOrSell }) {
         <div className="md:w-3/5 w-full min-h-[30vh] py-5 my-10 flex flex-col items-center justify-center ">
 
           <h1 className="text-4xl font-bold text-white mb-7">{isBuy?'Buy':'Sell'} Crypto</h1>
-            <PartOfList title="Some of the most popular cryptocurencies!" data={data.data} />
+            <PartOfList title="Some of the most popular cryptocurencies!" data={searchCtx.cryptoData.data} />
 
         </div>
         <div className="md:w-2/5 sm:w-3/5 w-full md:p-10 p-5  flex items-end justify-center">
-            <BuyContainer data={data} changeTransaction={changeTransaction} isBuy={isBuy}/>
+            <BuyContainer changeTransaction={changeTransaction} isBuy={isBuy}/>
         </div>  
       </div>
     <div className="w-full min-h-[45vh] flex flex-col py-10">

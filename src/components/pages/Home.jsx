@@ -4,9 +4,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
 
-export default function Home({ data }) {
+export default function Home() {
   const userCtx = useContext(AuthContext);
-  const searchCtx = useContext(SearchContext);
+  const searchCtx = useContext(SearchContext)
 
   let email = "****@*********";
   let balance = "******* ";
@@ -15,11 +15,10 @@ export default function Home({ data }) {
     balance = userCtx.userData.balance;
     console.log(userCtx.userData)
   }
-  if (!data || !data.data || data.data.length === 0) {
+
+  if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
     return <p>Loading...</p>; //Here will show Message/>
   }
-
-  searchCtx.loadCryptoData(data);
 
 
   return (
@@ -48,7 +47,7 @@ export default function Home({ data }) {
             alt=""
           />
         </div>
-        <PartOfList title="Most popular cryptocurency" data={data.data} />
+        <PartOfList title="Most popular cryptocurency" data={searchCtx.cryptoData.data} />
       </section>
       <HomeDisplayImg />
     </>

@@ -1,10 +1,12 @@
 import { useRef, useState, useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import { auth } from "../firebase";
+import SearchContext from "../../store/SearchContext";
 
-export default function BuyContainer({ data, changeTransaction, isBuy }) {
-  const [selectedEl, setSelectedEl] = useState(data.data[0]);
+export default function BuyContainer({ changeTransaction, isBuy }) {
   const authCtx = useContext(AuthContext);
+  const searchCtx = useContext(SearchContext);
+  const [selectedEl, setSelectedEl] = useState(searchCtx.cryptoData.data[0]);
 
   const enterInput = useRef();
   const receiveInput = useRef();
@@ -53,7 +55,7 @@ export default function BuyContainer({ data, changeTransaction, isBuy }) {
 
   function switchToSell () {
     changeTransaction(false)
-    setSelectedEl(data.data[0])
+    setSelectedEl(searchCtx.cryptoData.data[0])
   }
 
   return (
@@ -95,7 +97,7 @@ export default function BuyContainer({ data, changeTransaction, isBuy }) {
               className="text-white font-bold bg-[#1A1C22]"
               onChange={changeHandler}
             >
-              {data.data.slice(0, 20).map((el) => (
+              {searchCtx.cryptoData.data.slice(0, 20).map((el) => (
                 <option key={el.id} value={JSON.stringify(el)}>
                   {el.symbol}
                 </option>
@@ -124,7 +126,7 @@ export default function BuyContainer({ data, changeTransaction, isBuy }) {
               className="text-white font-bold bg-[#1A1C22]"
               onChange={changeHandler}
             >
-              {data.data.slice(0, 20).map((el) => (
+              {searchCtx.cryptoData.data.slice(0, 20).map((el) => (
                 <option key={el.id} value={JSON.stringify(el)}>
                   {el.symbol}
                 </option>

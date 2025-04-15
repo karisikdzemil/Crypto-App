@@ -13,7 +13,7 @@ import {
   topVolume,
 } from "../../util/formatter";
 
-export default function List({ data }) {
+export default function List() {
   const [activeBtn, setActiveBtn] = useState("All");
   const searchCtx = useContext(SearchContext);
   const userCtx = useContext(AuthContext);
@@ -23,20 +23,20 @@ export default function List({ data }) {
     setActiveBtn(btnName);
   }
 
-  if (!data || !data.data || data.data.length === 0) {
+  if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
     return <p>Loading... </p>;
   }
 
   if (activeBtn === "All") {
-    filteredData = [...data.data];
+    filteredData = [...searchCtx.cryptoData.data];
   }else if(activeBtn === "Favorites"){
     filteredData = [...searchCtx.favorites];
   } else if (activeBtn === "Gainers") {
-    filteredData = topGainers(data, 20);
+    filteredData = topGainers(searchCtx.cryptoData, 20);
   } else if (activeBtn === "Losers") {
-    filteredData = topLosers(data, 20);
+    filteredData = topLosers(searchCtx.cryptoData, 20);
   } else if (activeBtn === "Market") {
-    filteredData = topMarketCap(data, 20);
+    filteredData = topMarketCap(searchCtx.cryptoData, 20);
   }
 
     let balance = "******* ";
@@ -57,17 +57,15 @@ export default function List({ data }) {
         <span className="text-[#F0B90B]">MARKET</span> OVERVIEW{" "}
       </h1>
       <div className="w-[100%] min-h-[100vh] flex flex-col md:flex-row flex-wrap gap-10 items-center justify-center ">
-        <PartOfList title="Top 5 gainers!" data={topGainers(data, 5)} />
-        <PartOfList title="Top 5 losers!" data={topLosers(data, 5)} />
-        <PartOfList title="Top 5 market cap!" data={topMarketCap(data, 5)} />
-        <PartOfList title="Top 5 volume!" data={topVolume(data, 5)} />
+        <PartOfList title="Top 5 gainers!" data={topGainers(searchCtx.cryptoData, 5)} />
+        <PartOfList title="Top 5 losers!" data={topLosers(searchCtx.cryptoData, 5)} />
+        <PartOfList title="Top 5 market cap!" data={topMarketCap(searchCtx.cryptoData, 5)} />
+        <PartOfList title="Top 5 volume!" data={topVolume(searchCtx.cryptoData, 5)} />
       </div>
 
       <ul className=" min-w-5/12 w-full min-h-[10vh] p-2 flex flex-col items-left gap-5 md:w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
-        <SearchCrypto
-          data={data}
-        />
+        <SearchCrypto/>
         <ul className="text-white flex w-full justify-between">
           <li>Favorite</li>
           <li>Name</li>
