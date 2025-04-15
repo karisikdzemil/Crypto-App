@@ -9,10 +9,12 @@ import RootLayout from "./components/pages/RootLayout";
 import CryptoInfo from "./components/pages/CrytpoInfo";
 import Wallet from "./components/pages/Wallet";
 import Register, {action as registerUserAction} from "./components/pages/Register";
+import SearchContext from "./store/SearchContext";
 
 function App() {
       const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
       const [data, setData] = useState([]);
+
   
   useEffect(() => {
       fetch('/api/v1/cryptocurrency/listings/latest', {

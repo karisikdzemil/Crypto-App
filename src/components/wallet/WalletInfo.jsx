@@ -1,41 +1,54 @@
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
+import SearchContext from "../../store/SearchContext";
+import WalletAsset from "./WalletAsset";
+import { formatNumber } from "../../util/formatter";
 
 export default function WalletInfo() {
   const authCtx = useContext(AuthContext);
+  const searchCtx = useContext(SearchContext);
 
-  if (!authCtx.userData) {
-    return <div className="text-white p-5">Loading wallet info...</div>
+  if (!authCtx.userData || !searchCtx.cryptoData) {
+    return <div className="text-white p-5">Loading wallet info...</div>;
   }
 
   function getUserAssets(currencies) {
     const holdings = {};
-  
-    currencies.forEach(tx => {
+
+    currencies.forEach((tx) => {
       const { symbol, amountCoin, amountUSD, type } = tx;
-      const isBuy = type === 'BUY';
-  
+      const isBuy = type === "BUY";
+
       if (!holdings[symbol]) {
         holdings[symbol] = { coinAmount: 0, usdValue: 0 };
       }
-  
+
       holdings[symbol].coinAmount += isBuy ? amountCoin : -amountCoin;
       holdings[symbol].usdValue += isBuy ? amountUSD : -amountUSD;
     });
-  
+
     return Object.entries(holdings)
       .filter(([_, val]) => val.coinAmount > 0)
       .map(([symbol, val]) => ({
         symbol,
         amount: val.coinAmount,
-        usd: val.usdValue
+        usd: val.usdValue,
       }));
   }
-  
 
   const assets = getUserAssets(authCtx.userData.currencies || []);
-  console.log(authCtx.userData.currencies)
+
+  // ✅ Izračunaj total balance pre prikaza
+  const totalBalance = assets.reduce((acc, asset) => {
+    const crypto = searchCtx.cryptoData.data.find(
+      (el) => el.symbol === asset.symbol
+    );
+    if (!crypto) return acc;
+    return acc + asset.amount * crypto.quote.USD.price;
+  }, 0);
+
   const email = authCtx.userData.email;
+
   return (
     <div className="w-full max-w-4xl bg-[#2A2D38] rounded-2xl p-6 shadow-lg flex flex-col gap-6 text-white">
       {/* Header */}
@@ -52,7 +65,9 @@ export default function WalletInfo() {
       {/* Balance */}
       <div className="flex flex-col items-center gap-2">
         <p className="text-gray-400 text-lg">Total Balance</p>
-        <h3 className="text-4xl font-bold text-green-400">$100,000</h3>
+        <h3 className="text-4xl font-bold text-green-400">
+          ${formatNumber(totalBalance)}
+        </h3>
       </div>
 
       {/* Assets */}
@@ -62,24 +77,8 @@ export default function WalletInfo() {
         </h4>
 
         {assets.map((el) => (
-  <div
-    key={el.symbol}
-    className="flex justify-between items-center bg-[#1F222B] p-4 rounded-xl"
-  >
-    <div className="flex items-center gap-3">
-      <div>
-        <p className="text-white font-medium">{el.symbol}</p>
-        <p className="text-sm text-gray-400">{el.symbol}</p>
-      </div>
-    </div>
-    <div className="text-right">
-      <p className="text-white font-medium">
-        {el.amount.toFixed(4)} {el.symbol}
-      </p>
-      <p className="text-sm text-green-400">Market price coming soon</p>
-    </div>
-  </div>
-))}
+          <WalletAsset key={el.symbol} currency={el} />
+        ))}
       </div>
     </div>
   );

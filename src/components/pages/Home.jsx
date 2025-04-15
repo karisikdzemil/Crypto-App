@@ -2,9 +2,11 @@ import PartOfList from "../list/PartOfList";
 import HomeDisplayImg from "../home/HomeDisplayImg";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
+import SearchContext from "../../store/SearchContext";
 
 export default function Home({ data }) {
   const userCtx = useContext(AuthContext);
+  const searchCtx = useContext(SearchContext);
 
   let email = "****@*********";
   let balance = "******* ";
@@ -16,6 +18,9 @@ export default function Home({ data }) {
   if (!data || !data.data || data.data.length === 0) {
     return <p>Loading...</p>; //Here will show Message/>
   }
+
+  searchCtx.loadCryptoData(data);
+
 
   return (
     <>

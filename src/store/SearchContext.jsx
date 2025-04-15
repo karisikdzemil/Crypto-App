@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 
 const SearchContext = createContext({
+    cryptoData: null,
+    loadCryptoData: () => {},
     isActive: false,
     foundedCryptos: [],
     favorites: [],
@@ -11,19 +13,23 @@ const SearchContext = createContext({
 });
 
 export function SearchContextProvider ({children}){
-    const [isActive, setisActive] = useState(false);
+    const [cryptoData, setCryptoData] = useState([]);
+    const [isActive, setIsActive] = useState(false);
     const [foundedCryptos, setFoundedCryptos] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [cryptoInformation, setCryptoInformation] = useState({});
+
+    function loadCryptoData (cryptos) {
+        setCryptoData(cryptos)
+    }
     
 
     function searchForCryptos(event, data){
-        event.target.value !== '' ? setisActive(true) : setisActive(false)
+        event.target.value !== '' ? setIsActive(true) : setIsActive(false)
         const foundCryptos = data.data.filter((el) => (
             el.name.toUpperCase().includes(event.target.value.toUpperCase())  || el.symbol.toUpperCase().includes(event.target.value.toUpperCase()) || el.quote.USD.price.toString().includes(event.target.value)
         ));
         setFoundedCryptos(foundCryptos);
-        console.log(foundedCryptos)
     }
     
     function addToFavorites(data) {
@@ -41,6 +47,8 @@ export function SearchContextProvider ({children}){
       }
 
     const searchContext = {
+        cryptoData,
+        loadCryptoData,
         isActive,
         foundedCryptos,
         searchForCryptos,
@@ -50,7 +58,7 @@ export function SearchContextProvider ({children}){
         getCryptoInfo
     }
 
-    return <SearchContext value={searchContext}>{children}</SearchContext>
+    return <SearchContext.Provider value={searchContext}>{children}</SearchContext.Provider>
 }
 
 export default SearchContext
