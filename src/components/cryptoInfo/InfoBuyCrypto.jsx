@@ -28,15 +28,21 @@ export default function InfoBuyCrypto() {
     setActiveBuyBtn("byCrypto");
     setErrorMsg(null);
     setSuccessMsg(null);
+    setCoinQuantity(0);
+    inputRef.current.value = '';
   }
 
   function changeBtnToCashHandler() {
     setActiveBuyBtn("byCash");
     setErrorMsg(null);
     setSuccessMsg(null);
+    setCoinQuantity(0);
+    inputRef.current.value = '';
   }
 
   async function handleBuy() {
+    setErrorMsg("");
+
     const value = parseFloat(inputRef.current.value);
 
     if (!authCtx.user) {
@@ -52,8 +58,8 @@ export default function InfoBuyCrypto() {
     const coin = searchCtx.cryptoInformation;
     const isBuy = activeBuyBtn === "byCrypto";
 
-    const amountUSD = isBuy ? value * coin.quote.USD.price : value;
-    const amountCoin = isBuy ? value : value / coin.quote.USD.price;
+    const amountUSD = value * coin.quote.USD.price;
+    const amountCoin = value ;
 
     try {
       await authCtx.recordTransaction({
@@ -64,7 +70,11 @@ export default function InfoBuyCrypto() {
         amountCoin,
       });
 
-      setSuccessMsg(`Successfully bought ${amountCoin.toFixed(6)} ${coin.symbol}`);
+      if(activeBuyBtn === 'byCrypto'){
+        setSuccessMsg(`Successfully bought ${amountCoin.toFixed(6)} ${coin.symbol}`);
+      }else{
+        setSuccessMsg(`Successfully sold ${amountCoin.toFixed(6)} ${coin.symbol}`);
+      }
       inputRef.current.value = '';
     } catch (error) {
       setErrorMsg("Transaction failed. Try again.");
@@ -122,11 +132,11 @@ export default function InfoBuyCrypto() {
       <div className="w-10/12 h-[10vh] flex justify-between">
         <span className="text-white font-bold text-xl">
           {activeBuyBtn === "byCrypto" ? searchCtx.cryptoInformation.symbol : "USD"} = 
-          {activeBuyBtn !== "byCrypto" ? coinQuantity * formatNumber(+searchCtx.cryptoInformation.quote.USD.price): coinQuantity}
+          {activeBuyBtn !== "byCrypto" ? coinQuantity * formatNumber(+searchCtx.cryptoInformation.quote.USD.price): coinQuantity.toFixed(3)}
         </span>
         <span className="text-white font-bold text-xl">
-          {activeBuyBtn !== "byCrypto" ? searchCtx.cryptoInformation.symbol : "USD $"} = 
-          {activeBuyBtn === "byCrypto" ? coinQuantity * formatNumber(+searchCtx.cryptoInformation.quote.USD.price): coinQuantity}
+          {activeBuyBtn !== "byCrypto" ? searchCtx.cryptoInformation.symbol : "USD "} = 
+          {activeBuyBtn === "byCrypto" ? coinQuantity * formatNumber(+searchCtx.cryptoInformation.quote.USD.price): `${coinQuantity.toFixed(3)} `}
         </span>
       </div>
 
@@ -138,9 +148,9 @@ export default function InfoBuyCrypto() {
         </p>
         <button
           onClick={handleBuy}
-          className="w-full h-[6vh] cursor-pointer hover:bg-[#F0B90B] bg-[#FCD535] text-slate-900 font-bold rounded-md"
+          className="w-full min-h-[6vh] cursor-pointer hover:bg-[#F0B90B] bg-[#FCD535] text-slate-900 font-bold rounded-md"
         >
-          {authCtx.user ? "Buy Now" : "Log in & Buy"}
+         {activeBuyBtn === 'byCrypto' ? authCtx.user ? "Buy Now" : "Log in & Buy" : authCtx.user ? "Sell Now" : "Log in & Sell"}
         </button>
       </div>
     </div>

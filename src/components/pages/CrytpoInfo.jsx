@@ -11,6 +11,9 @@ import MarketInfo from "../cryptoInfo/MarketInfo";
 import ListItem from "../list/ListItem";
 
 export default function CryptoInfo() {
+
+    window.scrollTo(0, 0);
+
   const searchCtx = useContext(SearchContext);
   return (
     <section className="w-full min-h-[100vh] bg-[#1A1C22ff] p-10 px-2 flex flex-col md:flex-row items-center justify-evenly flex-wrap">

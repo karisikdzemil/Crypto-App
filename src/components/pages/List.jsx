@@ -65,16 +65,15 @@ export default function List() {
         <PartOfList title="Top 5 volume!" data={topVolume(searchCtx.cryptoData, 5)} />
       </div>
 
-      <ul className=" min-w-5/12 w-full min-h-[10vh] p-2 flex flex-col items-left gap-5 md:w-10/12 md:p-10 bg-blue-500">
+      <ul className=" min-w-5/12 w-full min-h-[10vh] p-2 flex flex-col items-left gap-5 md:w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
         <SearchCrypto/>
-        <ul className="text-white flex w-full gap-20 bg-red-500">
-        {/* <ul className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 sm:px-5 flex gap-3 justify-between items-center"> */}
+        <ul className="text-white flex w-full justify-between">
           <li>Favorite</li>
-          <li className="bg-green-600 ">Name</li>
-          <li className="bg-green-600">Value</li>
-          <li className="hidden md:block bg-green-500">Market Cap</li>
-          <li className="hidden md:block bg-green-500">Volume (24h)</li>
+          <li>Name</li>
+          <li>Value</li>
+          <li className="hidden md:block">Market Cap</li>
+          <li className="hidden md:block">Volume (24h)</li>
           <li>Change (24h)</li>
           <li>Actions</li>
         </ul>
