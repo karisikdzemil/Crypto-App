@@ -4,15 +4,18 @@ import { formatNumber } from "../../util/formatter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCalendarWeek, faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-export default function ListItem({ data, i, favoriteBtn }) {
+export default function ListItem({ data, i, favoriteBtn, liked = false }) {
   const searchCtx = useContext(SearchContext);
   if (!data || !data.length === 0) {
     return <p>Loading...</p>;
   }
 
   function getInfoHandler () {
-    // searchCtx.switchPages('Info');
     searchCtx.getCryptoInfo(data);
+  }
+  function likeCryptoHandler (event) {
+    searchCtx.addToFavorites(data);
+    event.currentTarget.classList.toggle('like');
   }
 
   let percent = <span className="textSize text-center">{formatNumber(data.quote.USD.percent_change_24h)}%</span>;
@@ -22,9 +25,9 @@ export default function ListItem({ data, i, favoriteBtn }) {
     percent = <span className="colorGreen text-center">{formatNumber(data.quote.USD.percent_change_24h)}%</span>;
   }
   return (
-    <li className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 sm:px-5 flex gap-3 justify-between items-center hover:bg-[#1E2329] cursor-pointer z-0">
+    <li className="text-white w-full h-[40px] relative border-gray-500 rounded-md p-2 sm:px-5 flex gap-3 justify-between items-center hover:bg-[#1E2329] z-0">
     {favoriteBtn && <span className="text-xs absolute left-1 top-1">{i}.</span>}
-    {favoriteBtn && <button onClick={() => searchCtx.addToFavorites(data)} className="text-2xl cursor-pointer hover:text-amber-400 hover:duration-200 ease-in"><FontAwesomeIcon icon={faHeart} /></button>}
+    {favoriteBtn && <button onClick={likeCryptoHandler} className={`text-2xl cursor-pointer hover:text-[#F0B90B] hover:duration-200 ease-in ${liked && 'text-[#F0B90B]'}`}><FontAwesomeIcon icon={faHeart} /></button>}
     <span className="w-[50px] text-center">{data.symbol}</span>
     <span className="w-[100px] text-xs text-center">{formatNumber(data.quote.USD.price)}$</span>
     <span className="w-[120px] text-xs text-center hidden md:block">{formatNumber(data.quote.USD.market_cap)}$</span>

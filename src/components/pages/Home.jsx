@@ -1,11 +1,12 @@
 import PartOfList from "../list/PartOfList";
-import Loading from '../UI/Loading';
+import Loading from "../UI/Loading";
 import HomeDisplayImg from "../home/HomeDisplayImg";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const userCtx = useContext(AuthContext);
@@ -19,14 +20,6 @@ export default function Home() {
     console.log(userCtx.userData);
   }
 
-  // if (
-  //   !searchCtx.cryptoData ||
-  //   !searchCtx.cryptoData.data ||
-  //   searchCtx.cryptoData.data.length === 0
-  // ) {
-  //   return ;
-  // }
-
   return (
     <>
       {" "}
@@ -36,12 +29,15 @@ export default function Home() {
             Welcome to <span className="text-[#F0B90B]">Crypto</span>, a site
             for tracking and buying cryptocurrencies!
           </h1>
-          <button className="bg-[#F0B90B] w-1/2 h-12 text-black rounded-md text-xl font-bold cursor-pointer hover:bg-[#FCD535]">
-            Invest
-          </button>
+          <Link className="w-1/2 h-12" to={userCtx.isUserData ? "/list" : "/register"}>
+            {" "}
+            <button className="bg-[#F0B90B] w-full h-full text-black rounded-md text-xl font-bold cursor-pointer hover:bg-[#FCD535]">
+              {userCtx.isUserData ? "Invest" : "Log in & Invest"}{" "}
+            </button>
+          </Link>
           <div className="md:w-1/2 w-full bg-[#2A2D38] p-4 rounded-xl shadow-md text-white flex flex-col gap-3">
             <div className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faCircleUser} />
+              <FontAwesomeIcon icon={faCircleUser} />
               <p className="text-sm sm:text-base font-medium break-words">
                 {email}
               </p>
@@ -64,10 +60,14 @@ export default function Home() {
             alt=""
           />
         </div>
-       {searchCtx.isLoadingData ? <Loading /> : <PartOfList
-          title="Most popular cryptocurency"
-          data={searchCtx.cryptoData.data}
-        />}
+        {searchCtx.isLoadingData ? (
+          <Loading />
+        ) : (
+          <PartOfList
+            title="Most popular cryptocurency"
+            data={searchCtx.cryptoData.data}
+          />
+        )}
       </section>
       <HomeDisplayImg />
     </>
