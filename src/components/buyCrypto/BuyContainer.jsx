@@ -64,9 +64,11 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
     setSelectedEl(parsed);
   }
 
-  function switchToSell () {
-    changeTransaction(false)
+  function switchTo (arg) {
+    changeTransaction(arg)
     setSelectedEl(searchCtx.cryptoData.data[0])
+    enterInput.current.value = '';
+    receiveInput.current.value = '';
   }
 
   return (
@@ -74,7 +76,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
       {authCtx.toast && <Toast message='Transaction completed' duration={2000} onClose={() => authCtx.toastSetter(false)} />} 
       <div className="w-full h-17 flex items-center justify-center">
         <button
-          onClick={() => changeTransaction(true)}
+          onClick={() => switchTo(true)}
           className={`w-2/5 h-full cursor-pointer text-xl font-bold text-white ${
             isBuy && isBuyClass
           }`}
@@ -82,7 +84,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
           Buy
         </button>
         <button
-          onClick={switchToSell}
+          onClick={() => switchTo(false)}
           className={`w-2/5 h-full text-xl font-bold cursor-pointer text-white ${
             !isBuy && isBuyClass
           }`}

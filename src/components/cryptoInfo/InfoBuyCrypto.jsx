@@ -19,8 +19,9 @@ export default function InfoBuyCrypto() {
     const value = parseFloat(e.target.value);
     if (!isNaN(value) && value >= 0) {
       setCoinQuantity(+value.toFixed(2));
+    }else{
+      setCoinQuantity(0)
     }
-    
   }
 
   function changeBtnToCryptoHandler() {
