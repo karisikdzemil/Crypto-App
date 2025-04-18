@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faC } from "@fortawesome/free-solid-svg-icons";
+import { Mail, Linkedin, Github } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="w-full h-[40vh] bg-[#1c242b] flex justify-between items-center flex-col">
@@ -19,8 +20,8 @@ export default function Footer() {
       <div className="w-full h-20 bg-[#2f363e] p-5 flex justify-center items-center flex-col ">
             <p className="text-white text-xs md:text-xl"><span className="text-white bg-transparent border-2 border-white rounded-[50%] text-xs p-1"><FontAwesomeIcon icon={faC} /></span> Created by Djemsy. All rights reserved.</p>
             <div className="flex gap-5">
-            <a className="text-white" href="">Github</a>
-            <a className="text-white" href="">LinkedIn</a>
+            <a className="text-white" href="https://github.com/karisikdzemil"><Github className="text-[#F0B90B]" /></a>
+            <a className="text-white" href="https://www.linkedin.com/in/karisikdzemil"><Linkedin className="text-[#F0B90B]" /></a>
             </div>
       </div>
     </footer>

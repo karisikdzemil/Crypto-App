@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import HambMenu from "./HambMenu";
 import Logout from "../register/Logout";
 import { useState, useContext } from "react";
@@ -14,19 +14,21 @@ export default function Header() {
   }
 
   return (
-    <header className="w-full h-[10vh] bg-[#0B0E11] p-1.5 px-5 flex gap-20 xs:gap-80">
-      <div className="flex justify-center items-center gap-5">
+    <header className="w-full h-[10vh] bg-[#0B0E11] p-1.5 px-5 flex justify-between">
+      <div className="flex justify-center items-center gap-5 min-w-60 ">
         <img className="w-15 h-15 rounded-md" src="image.png" alt="" />
-        <h1 className=" text-[#F0B90B] text-md md:text-4xl">
+        <h1 className=" text-[#F0B90B] text-md md:text-3xl">
+          <Link to='/'>
           Crypto <span className="text-white">App</span>
+          </Link>
         </h1>
       </div>
 
-      <button onClick={hambMenuHandler} className="text-3xl text-white cursor-pointer sm:hidden">
+      <button onClick={hambMenuHandler} className="text-3xl text-white cursor-pointer md:hidden">
         <FontAwesomeIcon icon={faBars} />
       </button>
         {hambMenu && <HambMenu hambMenuHandler={hambMenuHandler}/>}
-      <ul className="w-5/12 justify-evenly items-center sm:flex hidden ">
+      <ul className="w-full justify-evenly items-center md:flex hidden">
         <li>
           <NavLink
             to="/"

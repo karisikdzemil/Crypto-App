@@ -17,7 +17,7 @@ export default function HomeDisplayImg () {
     }
     
     return(
-        <div className="w-full min-h-[90vh] bg-[#1A1C22ff] items-center flex gap-5 flex-col md:flex-row">
+        <div className="w-full min-h-[90vh] bg-[#1A1C22ff] items-center flex gap-5 flex-col md:flex-row p-5">
            <div className="w-1/2 h-full flex items-center justify-center p-20">
            <div className="flex flex-col items-center gap-5">
                 <img className="" src={displayImage} alt="" />

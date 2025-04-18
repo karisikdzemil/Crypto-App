@@ -27,7 +27,7 @@ export default function CryptoInfo() {
       </div>
 
 
-      <div className="sm:w-112 w-full min-h-[40vh] flex flex-col justify-center items-start p-5">
+      <div className="sm:w-112 w-full min-h-[40vh] flex flex-col justify-center items-center p-5">
         <InfoBuyCrypto />
                 <ul className="w-full min-h-40 border-2 mt-5 bg-[#1A1C22ff] border-slate-700 p-5 rounded-md flex flex-col items-center gap-3">
                     <h1 className="text-white text-xl">Top Market Cap Cryptocurency</h1>
