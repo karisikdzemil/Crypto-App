@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Toast({ message, duration = 4000, onClose, redirectTo = '/' }) {
-  const [progress, setProgress] = useState(100);
-    const navigate = useNavigate()
+  const [progress, setProgress] = useState(0);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev <= 0) {
-            navigate(redirectTo);
+        if (prev >= 100) {
           clearInterval(interval);
           if (onClose) onClose();
-          return 0;
+          navigate(redirectTo);
+          return 100;
         }
-        return prev - 100 / (duration / 100);
+        return prev + 100 / (duration / 100);
       });
     }, 100);
 

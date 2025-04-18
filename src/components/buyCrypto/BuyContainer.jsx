@@ -5,6 +5,7 @@ import SearchContext from "../../store/SearchContext";
 import Toast from "../UI/Toast";
 
 export default function BuyContainer({ changeTransaction, isBuy }) {
+  const [inputEnter, setInputEnter] = useState('');
   const authCtx = useContext(AuthContext);
   const searchCtx = useContext(SearchContext);
   const [selectedEl, setSelectedEl] = useState(searchCtx.cryptoData.data[0]);
@@ -28,11 +29,10 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
     }
   }
 
-  let notAccount = '';
 
   async function transactionHandler() {
     if (!authCtx.user) {
-      notAccount = 'You must be logged in!';
+      setInputEnter('You must be logged in!');
       return;
     }
   
@@ -54,7 +54,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
       }
      
     } else {
-      notAccount = 'Enter a valid amount';
+      setInputEnter('Enter a valid amount');
       console.log('Invalid input');
     }
   }
@@ -69,6 +69,7 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
     setSelectedEl(searchCtx.cryptoData.data[0])
     enterInput.current.value = '';
     receiveInput.current.value = '';
+    setInputEnter('');
   }
 
   return (
@@ -151,10 +152,10 @@ export default function BuyContainer({ changeTransaction, isBuy }) {
         </div>
       </div>
 
-      <button onClick={transactionHandler} className="bg-[#FCD535] w-10/12 h-12 text-white rounded-md text-xl font-bold cursor-pointer mt-10 hover:bg-[#F0B90B]">
+      <button onClick={transactionHandler} className="bg-[#FCD535] w-10/12 h-12 text-black rounded-md text-xl font-bold cursor-pointer mt-10 hover:bg-[#F0B90B]">
         {isBuy ? "Buy" : "Sell"}
       </button>
-         <p className="text-red-500">{notAccount}</p>
+         <p className="text-red-500">{inputEnter}</p>
     </div>
   );
 }

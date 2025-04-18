@@ -51,7 +51,7 @@ export default function List() {
       <div className="w-full h-10 p-3 flex items-center justify-between">
         <p className="font-bold text-[#F0B90B] w-40 "> <Link to='/'>Home</Link> {'> List'}</p>
         <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
-                Balance: {balance}$
+                Balance: {userCtx.isUserData ? balance.toFixed(2) : '*********'}$
               </h1>
       </div>
       <h1 className="text-4xl mt-5 text-white w-90 text-center font-bold">

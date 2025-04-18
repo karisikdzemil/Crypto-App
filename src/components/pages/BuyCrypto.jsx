@@ -7,6 +7,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import SearchContext from "../../store/SearchContext";
 import Loading from "../UI/Loading";
+import { Link } from "react-router-dom";
 
 export default function BuyCrypto({ buyOrSell }) {
     const [isBuy, setIsBuy] = useState(buyOrSell);
@@ -17,9 +18,6 @@ export default function BuyCrypto({ buyOrSell }) {
         setIsBuy(arg)
     }
 
-  // if (!searchCtx.cryptoData || !searchCtx.cryptoData.data || searchCtx.cryptoData.data.length === 0) {
-  //   return <p>Loading... </p>;
-  // }
   let balance = "******* ";
     if (userCtx.isUserData) {
       balance = userCtx.userData.balance;
@@ -27,9 +25,9 @@ export default function BuyCrypto({ buyOrSell }) {
   return (
     <section className="w-full min-h-[90vh] bg-[#1A1C22ff] xs:p-10">
       <div className="sm:w-11/12 w-full m-auto p-10 h-10 flex items-center justify-between">
-        <p className="font-bold sm:text-base text-xs text-[#F0B90B] w-60">{'Home  > List > Buy/Sell'}</p> 
+        <p className="font-bold sm:text-base text-xs text-[#F0B90B] w-60"><Link to='/'>Home</Link>  {'>'} <Link to='/list'>List</Link> {'>'} Buy/Sell</p> 
         <h1 className="text-left text-white font-bold sm:text-base text-xs w-40">
-                Balance: {balance}$
+                Balance: {userCtx.isUserData ? balance.toFixed(2) : '*********'}$
               </h1>
       </div>
       <div className="w-full min-h-[30vh] flex flex-wrap-reverse items-center justify-center">

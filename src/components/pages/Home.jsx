@@ -49,7 +49,7 @@ export default function Home() {
                 className="w-6 h-6"
               />
               <p className="text-sm sm:text-base font-semibold text-[#F0B90B]">
-                Balance: ${balance}
+                Balance: ${userCtx.isUserData ? balance.toFixed(2) : '*********'}
               </p>
             </div>
           </div>
