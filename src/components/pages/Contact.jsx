@@ -12,8 +12,7 @@ export default function Contact() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-6xl mt-10">
-        {/* Email */}
-        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-lg hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
+        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-md hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
           <Mail size={40} className="text-[#F0B90B]" />
           <h2 className="text-2xl font-bold text-white">Email</h2>
           <p className="text-gray-300">
@@ -27,8 +26,7 @@ export default function Contact() {
           </a>
         </div>
 
-        {/* LinkedIn */}
-        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-lg hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
+        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-md hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
           <Linkedin size={40} className="text-[#F0B90B]" />
           <h2 className="text-2xl font-bold text-white">LinkedIn</h2>
           <p className="text-gray-300">
@@ -44,8 +42,7 @@ export default function Contact() {
           </a>
         </div>
 
-        {/* GitHub */}
-        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-lg hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
+        <div className="bg-[#2A2D36] p-8 rounded-2xl shadow-md hover:shadow-yellow-400 transition duration-300 flex flex-col items-center gap-6 text-center">
           <Github size={40} className="text-[#F0B90B]" />
           <h2 className="text-2xl font-bold text-white">GitHub</h2>
           <p className="text-gray-300">

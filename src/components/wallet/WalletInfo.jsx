@@ -10,7 +10,12 @@ export default function WalletInfo() {
   const searchCtx = useContext(SearchContext);
 
   if (!authCtx.userData || !searchCtx.cryptoData) {
-    return <div className="text-white p-5"><Loading /></div>;
+    return <div className="w-full max-w-4xl bg-[#2A2D38] rounded-2xl p-6 shadow-lg flex flex-col gap-6 text-white">
+      <div className="flex flex-col gap-1 border-b border-gray-600 pb-4">
+          <h2 className="text-2xl font-semibold">My Wallet</h2>
+    </div>
+    <p className="text-gray-400">You must log in or create a profile to use the wallet!</p>
+    </div>;
   }
 
   function getUserAssets(currencies) {

@@ -10,7 +10,7 @@ export default function WalletAsset({ currency }) {
 
   if (!displayedCrypto) {
     return (
-      <div className="bg-[#1F222B] p-4 rounded-xl text-red-400">
+      <div className="bg-[#1F222B] p-4 rounded-xl text-red-500">
         Crypto data not available for {currency.symbol}.
       </div>
     );

@@ -40,7 +40,7 @@ export default function ListItem({ data, i, favoriteBtn, liked = false }) {
       <span className="absolute top-8 scale-0 group-hover:scale-100 transition-transform bg-gray-700 text-white text-xs rounded py-1 px-2">Info</span>
       </button>
       <button className="relative group flex flex-col items-center">
-      <FontAwesomeIcon className="fas fa-info-circle text-2xl text-gray-500 cursor-pointer" icon={faChartSimple} />
+      <Link to='/buy-sell'><FontAwesomeIcon className="fas fa-info-circle text-2xl text-gray-500 cursor-pointer" icon={faChartSimple} /></Link>
       <span className="absolute top-8 scale-0 group-hover:scale-100 transition-transform bg-gray-700 text-white text-xs rounded py-1 px-2">Trade</span>
       </button>
     </div>}

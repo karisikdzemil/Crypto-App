@@ -8,7 +8,6 @@ export default function Login() {
       <h2 className="text-2xl font-bold text-white text-center">Login to Your Account</h2>
       <input type="hidden" name="formType" value="login" />
 
-      {data?.error && <p className="text-red-400 text-center">{data.error}</p>}
 
       <div>
         <label className="block text-white mb-1">Email</label>
@@ -38,6 +37,7 @@ export default function Login() {
       >
         Login
       </button>
+      {data?.error && <p className="text-red-500 text-center">{data.error}</p>}
     </Form>
   );
 }

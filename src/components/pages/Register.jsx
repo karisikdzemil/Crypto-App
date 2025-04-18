@@ -69,10 +69,14 @@ export async function action({ request }) {
             
             return redirect('/')
         }else{
+          if(password.length < 6){
+            return {error: 'Password must have at least 6 character!'}
+          }
             console.log('Passwords do not match.');
+            return {error: "Passwords don't match!"}
         }
         } catch (error) {
-            console.log(error);
+            return error
         }
     }  
 
@@ -83,7 +87,8 @@ export async function action({ request }) {
             return redirect('/')
         } catch (error) {
             console.log(error);
-            
+            return {error: "Wrong email or password!"}
+
         }
     }
 }

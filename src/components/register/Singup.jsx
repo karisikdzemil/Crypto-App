@@ -8,8 +8,6 @@ export default function Singup() {
       <h2 className="text-2xl font-bold text-white text-center">Create Your Account</h2>
       <input type="hidden" name="formType" value="signup" />
 
-      {data?.error && <p className="text-red-400 text-center">{data.error}</p>}
-
       <div>
         <label className="block text-white mb-1">Email</label>
         <input
@@ -43,12 +41,13 @@ export default function Singup() {
         />
       </div>
 
-      <button
+      <button 
         type="submit"
         className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition"
       >
         Sign Up
       </button>
+      {data?.error && <p className="text-red-500 text-center">{data.error}</p>},
     </Form>
   );
 }

@@ -14,6 +14,8 @@ export default function BuyCrypto({ buyOrSell }) {
       const userCtx = useContext(AuthContext);
       const searchCtx = useContext(SearchContext);
 
+    window.scrollTo(0, 0);
+
     function changeTransaction (arg) {
         setIsBuy(arg)
     }

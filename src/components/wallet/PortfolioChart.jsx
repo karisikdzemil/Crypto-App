@@ -8,17 +8,30 @@ export default function PortfolioChart() {
   const authCtx = useContext(AuthContext);
   const data = authCtx.userData?.currencies || [];
 
-  const holdings = {};
-  data.forEach((tx) => {
-    const { symbol, amountUSD, type } = tx;
-    const isBuy = type === "BUY";
-    if (!holdings[symbol]) holdings[symbol] = 0;
-    holdings[symbol] += isBuy ? amountUSD : -amountUSD;
-  });
+  function getUserAssets(currencies) {
+    const holdings = {};
 
-  const chartData = Object.entries(holdings)
-    .filter(([_, val]) => val > 0)
-    .map(([symbol, value]) => ({ name: symbol, value: +value.toFixed(2) }));
+    currencies.forEach((tx) => {
+      const { symbol, amountCoin, amountUSD, type } = tx;
+      const isBuy = type === "BUY";
+
+      if (!holdings[symbol]) {
+        holdings[symbol] = { coinAmount: 0, usdValue: 0 };
+      }
+
+      holdings[symbol].coinAmount += isBuy ? amountCoin : -amountCoin;
+      holdings[symbol].usdValue += isBuy ? amountUSD : -amountUSD;
+    });
+
+    return Object.entries(holdings)
+      .filter(([_, val]) => val.coinAmount > 0)
+      .map(([symbol, val]) => ({
+        name: symbol,
+        value: +val.usdValue.toFixed(2),
+      }));
+  }
+
+  const chartData = getUserAssets(data);
 
   return (
     <div className="w-full bg-[#2A2D38] rounded-2xl p-6 shadow-lg text-white mb-10">
