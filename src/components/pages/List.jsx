@@ -68,15 +68,16 @@ export default function List() {
       <ul className=" min-w-5/12 w-full min-h-[10vh] p-2 flex flex-col items-left gap-5 md:w-10/12 md:p-10">
         <FilterList changeActiveBtn={changeActiveBtn} activeBtn={activeBtn} />
         <SearchCrypto/>
-        <ul className="text-white flex w-full justify-between">
-          <li>Favorite</li>
-          <li>Name</li>
-          <li>Value</li>
-          <li className="hidden md:block">Market Cap</li>
-          <li className="hidden md:block">Volume (24h)</li>
-          <li>Change (24h)</li>
-          <li>Actions</li>
-        </ul>
+        <ul className="text-white w-full flex items-center bg-[#1E2329] justify-center gap-5 px-4 py-2 border-b border-gray-700">
+  <li className="w-[50px] text-left text-xs sm:text-base ">Favorite</li>
+  <li className="w-[80px] text-center text-xs sm:text-base">Symbol</li>
+  <li className="w-[100px] text-center text-xs sm:text-base">Price</li>
+  <li className="w-[120px] text-center hidden md:block">Market Cap</li>
+  <li className="w-[120px] text-center hidden md:block">Volume (24h)</li>
+  <li className="w-[100px] text-center text-xs sm:text-base">Change (24h)</li>
+  <li className="w-[140px] text-center text-xs sm:text-base">Actions</li>
+</ul>
+
         {searchCtx.isActive ? <RenderingData arr={searchCtx.foundedCryptos}/> :  <RenderingData arr={filteredData}/>}
       </ul>
     </section>

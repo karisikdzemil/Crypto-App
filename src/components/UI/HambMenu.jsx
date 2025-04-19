@@ -95,9 +95,9 @@ export default function HambMenu({ hambMenuHandler }) {
             Contact
           </NavLink>
         </li>
-         {!userCtx.isUserData ? <li>
+         {!userCtx.isUserData ? <li onClick={() => hambMenuHandler()}>
                   <NavLink
-                    to="/register?/login"
+                    to="/register"
                     className='text-black text-lg font-semibold px-4 py-2 hover:bg-[#FCD535] rounded-md cursor-pointer bg-[#F0B90B]'
                   >
                     Login
