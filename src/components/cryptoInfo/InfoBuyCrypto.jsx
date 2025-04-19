@@ -75,6 +75,7 @@ export default function InfoBuyCrypto() {
       }else{
         setSuccessMsg(`Successfully sold ${amountCoin.toFixed(6)} ${coin.symbol}`);
       }
+      authCtx.toastSetter(false)
       inputRef.current.value = '';
     } catch (error) {
       setErrorMsg("Transaction failed. Try again.");

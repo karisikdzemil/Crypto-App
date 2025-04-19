@@ -4,8 +4,13 @@ import { formatNumber } from "../../util/formatter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
 import InfoLikeCrypto from "./InfoLikeCrypto";
+import Loading from "../UI/Loading";
 export default function InfoCoreInfo() {
     const searchCtx = useContext(SearchContext);
+
+    if(!searchCtx || !searchCtx.cryptoInformation){
+      return <Loading />
+    }
 
     let percent = (
         <span className="textSize text-center text-white">

@@ -1,24 +1,37 @@
 import React from 'react';
+import { useContext } from 'react';
+import SearchContext from '../../store/SearchContext';
+import Loading from '../UI/Loading';
 
-const PriceHistoryTable = ({ data }) => {
-  const price = data.quote.USD.price;
-
+const PriceHistoryTable = () => {
+  const searchCtx = useContext(SearchContext);
+  
+  if(
+    !searchCtx.cryptoInformation || 
+    !searchCtx.cryptoInformation.quote || 
+    !searchCtx.cryptoInformation.quote.USD
+  ){
+    return <Loading />
+  }
+  const price = searchCtx.cryptoInformation.quote.USD.price;
+  
+  console.log(searchCtx.cryptoInformation.quote.USD.percent_change_24h)
   const changes = [
     {
       label: 'Today',
-      percent: data.quote.USD.percent_change_24h,
+      percent: searchCtx.cryptoInformation.quote.USD.percent_change_24h,
     },
     {
       label: '30 Days',
-      percent: data.quote.USD.percent_change_30d,
+      percent: searchCtx.cryptoInformation.quote.USD.percent_change_30d,
     },
     {
       label: '60 Days',
-      percent: data.quote.USD.percent_change_60d,
+      percent: searchCtx.cryptoInformation.quote.USD.percent_change_60d,
     },
     {
       label: '90 Days',
-      percent: data.quote.USD.percent_change_90d,
+      percent: searchCtx.cryptoInformation.quote.USD.percent_change_90d,
     },
   ];
 
