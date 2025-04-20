@@ -11,26 +11,24 @@ import SearchContext from "./store/SearchContext";
 import Contact from "./components/pages/Contact";
 
 function App() {
-      const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
+      // const coinCapKey = "43422c1a-2e87-4553-8af5-cabbd94100da";
       const searchCtx = useContext(SearchContext);
 
       useEffect(() => {
         searchCtx.loadingDataSetter(true);
-    
-        fetch('https://corsproxy.io/?https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-            method: 'GET',
-            headers: {
-                'X-CMC_PRO_API_KEY': coinCapKey
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
+      
+        fetch('/api/getCoins') 
+          .then(response => response.json())
+          .then(data => {
             searchCtx.loadCryptoData(data);
-            console.log(data);
             searchCtx.loadingDataSetter(false);
-        })
-        .catch(error => console.error("Greška prilikom fetchovanja:", error));
-    }, []);
+          })
+          .catch(error => {
+            console.error("Greška prilikom fetchovanja:", error);
+          });
+      }, []);
+      
+    
 
   const router = createBrowserRouter([
     {path: '/', element: <RootLayout />, children: [
@@ -42,11 +40,11 @@ function App() {
       {path: '/register', element: <Register />, action: registerUserAction},
       {path: '/contact', element: <Contact/>},
     ]}
-  ])
+  ]);
    
   return (
         <RouterProvider router={router}/>
   )
 }
 
-export default App
+export default App;
